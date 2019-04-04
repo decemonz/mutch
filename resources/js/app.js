@@ -5,7 +5,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -31,3 +30,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+
+
+  document.getElementById('logout').addEventListener('click',function(event){
+    event.preventDefault();
+    document.getElementById('logout-form').submit();
+  });

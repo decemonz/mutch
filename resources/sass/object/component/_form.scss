@@ -1,0 +1,37 @@
+#form{
+  width: cover;
+  background-color: silver;
+  background-size: cover;
+}
+
+.c-form{
+  padding: 70px;
+  width: 400px;
+  height:600px;
+  margin: 0 auto;
+
+
+  &__group{
+    margin: 20px 0;
+  }
+
+  &__control{
+    margin:10px 0;
+    width: 350px;
+    height: 35px;
+    display: block;
+    font-size: 100%;
+    &-price{
+    margin:10px 0;
+    width: 100px;
+    height: 30px;
+    }
+  }
+  &__area{
+    width: 350px;
+    margin:10px 0;
+    display: block;
+    font-size: 100%;
+  }
+
+}

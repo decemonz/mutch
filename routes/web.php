@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.top');
 });
+Route::get('/article_register','ArticleController@register')->name('article.register');
+Route::post('/article_register','ArticleController@create')->name('article.create');
+
+Auth::routes();
