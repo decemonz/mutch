@@ -29,4 +29,11 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'token' => ['required'],
+    //     ]);
+    // }
 }

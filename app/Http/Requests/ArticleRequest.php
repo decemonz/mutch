@@ -24,8 +24,12 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
+          'title' => 'required|min:3',
+          'body' => 'required',
+          'hi_price' => 'required',
+          'low_price' => 'required',
+          'kind' => 'required',
 
-          
             //
         ];
     }

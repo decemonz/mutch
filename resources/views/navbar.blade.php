@@ -10,23 +10,27 @@
      @if(Auth::check())
 
          <div class="c-navbar__item">
-         <a href="#" id="logout"><span class="my-navbar-item">{{Auth::user()->name}}さん</span></a>
+         <a href="{{ route('user.edit')}}" ><span class="my-navbar-item">{{Auth::user()->name}}さん</span></a>
          </div>
 
+        <div id="logout">
+          <div class="c-navbar__item">
+          <a href="#"  @click="logout">ログアウト</a>
+          </div>
+
+          <form class="" id="logout-form" action="{{ route('logout')}}" method="post" style="display:none;">
+            @csrf
+          </form>
+        </div>
+
+
+
          <div class="c-navbar__item">
-         <a href="#" id="logout">ログアウト</a>
+           <a href="{{ route('article.index')}}">案件一覧</a>
+
          </div>
-
-         <form class="" id="logout-form" action="{{ route('logout')}}" method="post" style="display:none;">
-           @csrf
-         </form>
-
-
          <div class="c-navbar__item">
-           <h2>案件一覧</h2>
-         </div>
-         <div class="c-navbar__item">
-          <a href="/article_register">案件登録</a>
+          <a href="{{ route('article.create')}}">案件登録</a>
          </div>
 
          @else

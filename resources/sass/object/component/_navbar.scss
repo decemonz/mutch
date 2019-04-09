@@ -6,12 +6,13 @@
   justify-content: space-between;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .1);
   line-height: 50px;
-
+  background-color: white;
 
   &__title{
   font-size: 20px;
+  font-weight: bold;
   margin-left: 30px;
-  font-family: 'Patua One', cursive;
+  color: #000033;
   }
 
   &__menu{
@@ -28,8 +29,12 @@
     text-align: center;
     margin-top: 5px;
     line-height: 40px;
-    color: #66CCCC;
+    color: #000033;
     cursor: pointer;
+
+    &:hover{
+      opacity: 0.7;
+    }
 
 
   }

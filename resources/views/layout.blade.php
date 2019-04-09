@@ -5,6 +5,7 @@
     <title></title>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Patua+One|Source+Serif+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
     @yield('head')
   </head>
   <body>

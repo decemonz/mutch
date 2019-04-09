@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div id="login">
+<div id="form">
   <div class="c-form">
         <div class="c-form__head">
           ログイン
@@ -25,11 +25,16 @@
               <label for="password">パスワード</label>
               <input type="password" class="c-form__control" id="password" name="password" >
             </div>
-          
+
             <div class="text-right">
               <button type="submit" name="button" class="c-btn btn-primary">送信</button>
             </div>
           </form>
+
+          <div class="">
+            <p>パスワード忘れ</p>
+            <a href=""></a>
+          </div>
         </div>
   </div>
 </div>
