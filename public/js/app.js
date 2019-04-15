@@ -16377,6 +16377,16 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       document.getElementById('logout-form').submit();
     }
   }
+}); // 通知用
+
+Pusher.logToConsole = true;
+var pusher = new Pusher('8f531320589dac674c15', {
+  cluster: 'ap3',
+  forceTLS: true
+});
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function (data) {
+  $.notify(data.message, 'info');
 });
 
 /***/ }),

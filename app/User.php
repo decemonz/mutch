@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-// use App\Mail\ResetPassword;
-// use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPassword;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','body','image',
     ];
 
     /**
@@ -30,9 +30,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-// 記事とのリレーション
+// 案件記事とのリレーション
     public function articles(){
       return $this->hasMany('App\Article');
+    }
+    public function messages(){
+      return $this->hasMany('App\Message');
+    }
+
+    public function user(){
+      return $this->hasOne('App\Board');
+    }
+    public function client(){
+      return $this->hasOne('App\Board','board_user','client_id','id');
     }
 
     /**

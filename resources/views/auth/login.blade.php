@@ -32,8 +32,8 @@
           </form>
 
           <div class="">
-            <p>パスワード忘れ</p>
-            <a href=""></a>
+
+            <a href="{{ url('/email')}}">  <p>パスワード忘れ</p></a>
           </div>
         </div>
   </div>

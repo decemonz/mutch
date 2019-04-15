@@ -10,7 +10,7 @@
      @if(Auth::check())
 
          <div class="c-navbar__item">
-         <a href="{{ route('user.edit')}}" ><span class="my-navbar-item">{{Auth::user()->name}}さん</span></a>
+         <a href="{{ route('user.show')}}" ><span class="my-navbar-item">マイページ</span></a>
          </div>
 
         <div id="logout">
