@@ -1,0 +1,28 @@
+.p-top{
+  &__container{
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  position: absolute;
+  top: 60%;
+  left: 0;
+  right: 0;
+
+
+  }
+  &__title{
+  font-size: 150px;
+  color: white;
+  margin-bottom: 10px;
+  @include mq(md){
+  font-size: 100px;
+  }
+  @include mq(sm){
+  font-size: 80px;
+  }
+  }
+  &__para{
+    color: white;
+
+  }
+}

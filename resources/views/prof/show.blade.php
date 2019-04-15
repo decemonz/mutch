@@ -1,0 +1,109 @@
+@extends('layout')
+
+@section('head')
+
+@endsection
+
+@section('content')
+
+<div id="show">
+
+
+  <div class="c-panel__container">
+
+      <p class="p-show__contents">No.{{ $user->id}}</p>
+
+      <h1 class="p-show__label">ユーザー名</h1>
+    　 <p class="p-show__contents">{{ $user->name }}</p>
+
+      <div class="p-show__image">
+        <img src="/images/{{ $user->image }}" alt="">
+      </div>
+
+    　<h1 class="p-show__label pb-3">自己紹介</h1>
+
+        <p class="p-show__contents pb-3">
+          {{ $user->body}}
+        </p>
+
+  @if( $user->id === Auth::user()->id)
+    <div class="p-show__contents pb-3">
+      <a href="{{ route('user.edit')}}" >
+          <button class="c-btn">プロフィールを編集する</button>
+      </a>
+    </div>
+  @endif
+
+
+  <div class="p-show__contents">
+
+   <p class="p-show__label">最新投稿案件一覧</p>
+
+    @foreach($articles as $article)
+
+      <a class="p-show__contents" href="{{ url('articles',$article->id)}}">
+
+        <p class="p-show__contents">{{ $article->title}}</p>
+        <p>{{ $article->body}}</p>
+
+      </a>
+
+
+    @endforeach
+
+  </div>
+
+@if( $user->id === Auth::user()->id)
+
+  <div class="p-show__contents">
+
+   <p class="p-show__label">取引中案件一覧</p>
+
+
+   @if($client_boards)
+
+    @foreach($client_boards as $client_board)
+
+    No.{{ $client_board->id}}  <a href="{{ url('show_board',$client_board->id)}}">
+
+       {{ $client_board->article_title}}
+        </a>
+    </br>
+
+      @endforeach
+
+    @endif
+
+  </div>
+
+   <div class="p-show__contents">
+    <p class="p-show__label">応募中案件一覧</p>
+
+      @if($apply_boards)
+
+      @foreach($apply_boards as $apply_board)
+
+
+      No.{{ $apply_board->id}}   <a href="{{ url('show_board',$apply_board->id)}}">
+
+    　　　{{ $apply_board->article_title }}
+        </a>
+
+
+      @endforeach
+
+      @endif
+
+   </div>
+
+@endif
+
+  </div>
+
+</div>
+
+
+@endsection
+
+@section('footer')
+@endsection

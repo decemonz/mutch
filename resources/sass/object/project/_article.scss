@@ -1,0 +1,37 @@
+#articles{
+  background-color: #F5F5F5;
+  padding: 50px;
+}
+
+.c-article{
+
+  &__id{
+    margin: 13px 0;
+  }
+
+  &__title{
+    font-size: 30px;
+    margin-bottom: 20px;
+
+
+  }
+
+  &__body{
+  margin-top: 50px;
+  min-height: 100px;;
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid silver;
+  }
+
+  &__price{
+    float: left;
+  }
+
+  &__kind{
+    float: right;
+    margin-right: 30px;
+  }
+
+}

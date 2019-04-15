@@ -1,0 +1,56 @@
+.p-message{
+
+  padding: 30px 0;
+
+  &__left{
+  width: 80%;
+  background-color: white;
+  height: auto;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 20px;
+  position: relative;
+  margin-left: 100px;
+  text-align: center;
+
+  &-name{
+    position: absolute;
+    left: -60px;
+  }
+
+  &-date{
+    font-size: 8px;
+    position: absolute;
+    top: -12px;
+    right: 3px;
+
+  }
+
+  }
+
+
+
+  &__right{
+    width: 80%;
+    background-color: white;
+    height: auto;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px;
+    position: relative;
+    text-align: center;
+
+    &-name{
+      position: absolute;
+      right: -60px;
+    }
+
+    &-date{
+      font-size: 8px;
+      position: absolute;
+      top: -12px;
+      left: 3px;
+
+    }
+  }
+}

@@ -1,0 +1,36 @@
+#show{
+  width: cover;
+  background-color: #F5F5F5;
+  background-size: cover;
+  padding: 50px;
+}
+.p-show{
+
+  &__title{
+    text-align: center;
+    font-size: 20px;
+    margin: 50px 0;
+
+  }
+
+  &__label{
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  &__contents{
+  margin-bottom: 10px;
+  }
+
+  &__image{
+    text-align: center;
+  }
+
+  &__edit{
+    float: right;
+  }
+
+  &__number{
+    float: left;
+  }
+}
