@@ -26,8 +26,8 @@ class ArticleRequest extends FormRequest
         return [
           'title' => 'required|min:3',
           'body' => 'required',
-          'hi_price' => 'required',
-          'low_price' => 'required',
+          'hi_price' => 'number',
+          'low_price' => 'number',
           'kind' => 'required',
 
             //

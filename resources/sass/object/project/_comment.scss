@@ -16,13 +16,17 @@
   &__delete{
     width: 10%;
     height: 30px;
-    background-color: #FF9900;
+    background-color: white;
     border-radius: 5px;
-    color: white;
+    color: #FF9900;
     font-size: 10px;
     position: absolute;
-    right: -55px;
-    top: 3px;
+    right: -70px;
+    top: 5px;
+
+    @include mq(sm){
+      right: -40px;
+    }
 
     &:hover{
       opacity: 0.7;
@@ -30,20 +34,7 @@
     }
   }
 
-  &__btn{
-    width: 20%;
-    height: 40px;
-    background-color: #3366FF;
-    border-radius: 5px;
-    color: white;
-    font-size: 15px;
-    float: right;
 
-    &:hover{
-      background-color: #3366CC;
-      cursor: pointer;
-    }
-  }
 
   &__container{
     width: 100%;
@@ -65,7 +56,7 @@
   &__name{
     position: absolute;
     left: 10px;
-    top: -15px;
+    top: -17px;
 
     font-size: 12px;
   }
@@ -76,7 +67,7 @@
 
   &__date{
     position: absolute;
-    top: -14px;
+    top: -17px;
     right: 10px;
     font-size: 5px;
   }

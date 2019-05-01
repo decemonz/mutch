@@ -9,15 +9,20 @@ use App\Comment;
 class CommentController extends Controller
 {
     public function store(CommentRequest $request, $id){
+
+      $message = [ 'コメント送信されました'  ];
+      event(new \App\Events\ApplyPusher($message));
+
       $comments = Comment::create($request->validated());
       $comments->save();
       // return view('article.show',['id'=>$id]);
       return redirect()->route('article.show',$id);
     }
-
-    public function destory($id){
+// コメント削除
+    public function destroy($id){
       $comment = Comment::findOrFail($id);
       $comment->delete();
-      return redirect()->route('top');
+      $article = $comment->article;
+      return redirect()->route('article.show',$article->id);
     }
 }

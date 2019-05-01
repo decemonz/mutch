@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="form">
-  <div class="c-form">
+  <div class="c-panel__container">
         <div class="c-form__title">
           プロフィール登録
         </div>

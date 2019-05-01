@@ -8,10 +8,20 @@ use App\Article;
 use App\User;
 use App\Board;
 use Illuminate\Support\Facades\Auth;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 class ArticleController extends Controller
 {
     //
+
+    public function top(){
+      $user = Auth::user();
+      $user_id = $user->id;
+      $articles = Article::where('user_id',$user_id)->get();
+      $boards = Board::where('user_id',$user_id)->get();
+      // $articles = Article::all();
+      return view('pages.top',compact('articles','user','boards'));
+    }
 
     public function index(){
       $articles = Article::all();
@@ -50,4 +60,6 @@ class ArticleController extends Controller
 
       return view('article.show',compact('article','user','comments','boards'));
     }
+
+
 }

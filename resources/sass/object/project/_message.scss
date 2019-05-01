@@ -1,6 +1,7 @@
 .p-message{
-
-  padding: 30px 0;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
 
   &__left{
   width: 80%;
@@ -8,20 +9,29 @@
   height: auto;
   padding: 10px;
   border-radius: 8px;
-  margin: 20px;
+  margin:40px;
   position: relative;
-  margin-left: 100px;
   text-align: center;
 
   &-name{
+    font-size: 11px;
     position: absolute;
-    left: -60px;
+    left: -75px;
+    top: -30px;
+  }
+
+  &-image{
+    position: absolute;
+    left: -65px;
+    top: -10px;
+    width: 50px;
+    border-radius: 25px;
   }
 
   &-date{
     font-size: 8px;
     position: absolute;
-    top: -12px;
+    top: -17px;
     right: 3px;
 
   }
@@ -36,19 +46,29 @@
     height: auto;
     padding: 10px;
     border-radius: 8px;
-    margin: 20px;
+    margin: 40px;
     position: relative;
     text-align: center;
 
     &-name{
+      font-size: 11px;
       position: absolute;
-      right: -60px;
+      right: -80px;
+      top: -30px;
+    }
+
+    &-image{
+      position: absolute;
+      right: -65px;
+      top: -10px;
+      width: 50px;
+      border-radius: 25px;
     }
 
     &-date{
       font-size: 8px;
       position: absolute;
-      top: -12px;
+      top: -17px;
       left: 3px;
 
     }

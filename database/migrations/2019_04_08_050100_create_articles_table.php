@@ -20,15 +20,15 @@ class CreateArticlesTable extends Migration
 
                     $table->text('body');
                     $table->string('kind');
-                    $table->integer('hi_price');
-                    $table->integer('low_price');
+                    $table->integer('hi_price')->nullable();
+                    $table->integer('low_price')->nullable();
                     $table->timestamps();
 
                     $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade');
-            
+
 
 
         });

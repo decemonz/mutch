@@ -38,7 +38,7 @@ class User extends Authenticatable
       return $this->hasMany('App\Message');
     }
 
-    public function user(){
+    public function board(){
       return $this->hasOne('App\Board');
     }
     public function client(){

@@ -8,5 +8,12 @@
     margin: 0 auto;
     background-color: white;
     border-radius: 8px;
+
+    @include mq(sm){
+      font-size: 14px;
+      padding: 30px 30px;
+      max-width: 400px;
+      min-width: 100px;
+    }
   }
 }

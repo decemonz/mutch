@@ -1,6 +1,10 @@
 #articles{
   background-color: #F5F5F5;
   padding: 50px;
+
+  @include mq(sm){
+    padding: 20px;
+  }
 }
 
 .c-article{
@@ -12,7 +16,9 @@
   &__title{
     font-size: 30px;
     margin-bottom: 20px;
-
+    @include mq(sm){
+      font-size: 20px;
+    }
 
   }
 

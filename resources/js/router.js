@@ -8,13 +8,25 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/index/list',
+    path: '/index',
     component:ArticleList,
-    props: true,
+    props: true
+
+    // route => {
+    //   const page = rute.query.page
+    //   return {
+    //      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
+    //   }
+    // }
 
   },
   {
-    path: '/article/:id',
+    path: '/index/articles/:id',
+    component:ArticleDetail,
+    props:true
+  },
+  {
+    path: '/index/articles/:id',
     component:ArticleDetail,
     props:true
   },

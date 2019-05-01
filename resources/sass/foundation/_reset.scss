@@ -43,6 +43,9 @@ table {
 }
 a{
 	text-decoration: none;
+	&:hover{
+		opacity: 0.7;
+	}
 	&:visited{
 		color: inherit;
 	}

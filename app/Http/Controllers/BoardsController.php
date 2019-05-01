@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 class BoardsController extends Controller
 {
     public function store(BoardRequest $request){
+
+      // $message = \App\Applypusher::create([
+      //   'article_id' => $request->message
+      // ]);
+      // event(new MessageCreated($message));
+
       $board = Board::create($request->validated());
     return redirect()->route('board.show',$board->article_id);
     }
@@ -34,6 +40,7 @@ class BoardsController extends Controller
     }
 
     public function show_board($id){
+
       $user_id = Auth::user()->id;
       $board = Board::findOrFail($id);
       $user = User::findOrFail($user_id);

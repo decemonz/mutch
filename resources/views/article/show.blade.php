@@ -132,8 +132,9 @@
           <p class="p-comment__name">name:{{ $comment->user_name}}</p>
           <p class="p-comment__text">{{ $comment->body }}</p>
           <p class="p-comment__date">{{ $comment->created_at }}</p>
-          <form class="" action="{{url('comment',$comment->id,'delete')}}" method="delete">
-            <button type="submit" name="button" class="p-comment__delete btn-primary">削除</button>
+          <form class="" action="{{url('comment_delete',$comment->id)}}" method="post">
+            @csrf
+            <button type="submit" class="p-comment__delete btn-primary">削除</button>
           </form>
 
         </div>

@@ -22,7 +22,7 @@ class ApplyPusher implements ShouldBroadcast
      *
      * @param string $message
      */
-    public function __construct($message = 'hello pusher')
+    public function __construct($message)
     {
       $this->message = $message;
     }
@@ -34,12 +34,14 @@ class ApplyPusher implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['my-channel'];
+        return ['my_channel'];
     }
-
 
     public function broadcastAs()
     {
-        return 'my-event';
+     return 'my_event';
     }
+
+
+
 }

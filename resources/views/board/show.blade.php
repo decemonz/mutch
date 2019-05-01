@@ -8,23 +8,25 @@
 
 
 
-    <section id="form">
+    <section class="show">
 
 
-      <div class="p-show__contents">
-          {{ $article->title}}
-      </div>
+
 
 <div class="p-message">
+
+  <div class="p-show__contents">
+      {{ $article->title}}
+  </div>
 
       @foreach($messages as $message)
 
       @if($message->user->name == Auth::user()->name)
 
       <div class="p-message__left">
-        <p class="p-message__left-date">{{ $message->created_at}}</p>
+        <p class="p-message__left-date">{{ date('Y/m/d',strtotime($message->created_at))}}</p>
         <p class="p-message__left-name">{{ $message->user->name }}</p>
-        <img src="{{ $message->user->image }}" alt="" class="p-message__left-name">
+        <img src="/images/{{ $message->user->image }}" alt="" class="p-message__left-image">
         <p>{{ $message->body }}</p>
       </div>
 
@@ -32,9 +34,9 @@
       @else
 
       <div class="p-message__right">
-        <p class="p-message__right-date">{{ $message->created_at}}</p>
+        <p class="p-message__right-date">{{ date('Y/m/d',strtotime($message->created_at)) }}</p>
         <p class="p-message__right-name">{{ $message->user->name }}</p>
-        <img src="{{ $message->user->image }}" alt="" class="p-message__left-name">
+        <img src="/images/{{ $message->user->image }}" alt="" class="p-message__right-image">
         <p>{{ $message->body }}</p>
       </div>
 

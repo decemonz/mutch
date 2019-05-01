@@ -1,13 +1,30 @@
 .c-btn{
   width: 102%;
   height: 40px;
-  background-color: #3366FF;
+
   border-radius: 5px;
-  color: white;
+  color: rgb(70,70,70);
   font-size: 15px;
+  margin-bottom: 10px;
 
   &:hover{
-    background-color: #3366CC;
+    background-color: rgba(230,230,230,0.6);
+    color: black;
+    cursor: pointer;
+  }
+}
+
+.p-comment__btn{
+  width: 20%;
+  height: 40px;
+  color: rgb(70,70,70);
+  border-radius: 5px;
+  font-size: 15px;
+  float: right;
+
+  &:hover{
+    background-color: rgba(230,230,230,0.6);
+    color: black;
     cursor: pointer;
   }
 }

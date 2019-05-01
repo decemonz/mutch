@@ -10,16 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
-// Route::get('/index/{any?}',function(){
-//   return view('article.index');
-// })->where('any','.+');
 
-Route::get('/', function () {
-    return view('pages.top');
-})->name('top');
+
+
+
 
 Route::group(['middleware' => 'auth'],function(){
+
+Route::get('/', 'ArticleController@top')->name('top');
+
+Route::get('/index/{any?}',function(){
+  return view('article.index');
+})->where('any','.+');
 
 // article
 Route::get('/create','ArticleController@create')->name('article.create');
@@ -29,11 +31,19 @@ Route::get('/articleEdit/{id}','ArticleController@edit')->name('article.edit');
 Route::post('/articleUpdate/{id}','ArticleController@update')->name('article.update');
 Route::get('/articles/{id}','ArticleController@show')->name('article.show');
 
+// ajax
+Route::get('/ajax/articles','Ajax\ArticlesController@index');
+Route::get('/ajax/articles/{id}','Ajax\ArticlesController@show');
+Route::get('/ajax/user/{id}','Ajax\ArticlesController@user');
+Route::get('/ajax/comments/{id}','Ajax\ArticlesController@comments');
+Route::get('/ajax/boards/{id}','Ajax\ArticlesController@boards');
+Route::get('/ajax/currentUser/{id}','Ajax\ArticlesController@currentUser');
 
 
 // comment
+Route::post('/comment_delete/{id}','CommentController@destroy')->name('comment.delete');;
 Route::post('/comment/{id}','CommentController@store')->name('comment.store');
-Route::delete('/comment/{id}/delete','CommentController@destroy')->name('comment.delete');;
+
 
 // message
 Route::post('/message/{id}','MessagesController@store')->name('message.store');
@@ -49,6 +59,9 @@ Route::get('/board/{id}','BoardsController@show')->name('board.show');
 Route::post('/board','BoardsController@store')->name('board.store');
 Route::get('/show_board/{id}','BoardsController@show_board')->name('show_board');
 
+// twitter
+Route::get('/twitter','TwitterController@tweet')->name('twitter.tweet');
+
 });
 
 // パスワード変更画面表示用
@@ -61,5 +74,4 @@ Auth::routes();
 // 通知用
 Route::get('/hello', function() {
     event(new \App\Events\ApplyPusher('テストメッセージ'));
-    return 'hello pusher';
 });

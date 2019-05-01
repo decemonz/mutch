@@ -2,6 +2,8 @@
 <html lang="ja" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title></title>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Patua+One|Source+Serif+Pro" rel="stylesheet">
@@ -9,6 +11,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="/js/app.js"></script>
+
     @yield('head')
   </head>
   <body>

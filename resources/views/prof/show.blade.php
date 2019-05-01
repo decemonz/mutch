@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div id="show">
+<div class="show">
 
 
   <div class="c-panel__container">
@@ -43,11 +43,11 @@
 
       <a class="p-show__contents" href="{{ url('articles',$article->id)}}">
 
-        <p class="p-show__contents">{{ $article->title}}</p>
-        <p>{{ $article->body}}</p>
-
+        <p class="p-show__newlabel"> ○ {{$article->title}} </p>
+        <p class="p-show__contents">{{ str_limit($article->body,$limit = 100, $end = '...')}}</p>
+        <br>
+        
       </a>
-
 
     @endforeach
 
@@ -64,15 +64,20 @@
 
     @foreach($client_boards as $client_board)
 
-    No.{{ $client_board->id}}  <a href="{{ url('show_board',$client_board->id)}}">
+   <div class="p-show__contents">
 
+    No.{{ $client_board->id}}
+
+     <a href="{{ url('show_board',$client_board->id)}}">
        {{ $client_board->article_title}}
-        </a>
-    </br>
+     </a>
+     </br>
 
-      @endforeach
+   </div>
 
-    @endif
+    @endforeach
+
+  @endif
 
   </div>
 
@@ -83,12 +88,12 @@
 
       @foreach($apply_boards as $apply_board)
 
-
+      <div class="p-show__contents">
       No.{{ $apply_board->id}}   <a href="{{ url('show_board',$apply_board->id)}}">
 
     　　　{{ $apply_board->article_title }}
         </a>
-
+      </div>
 
       @endforeach
 

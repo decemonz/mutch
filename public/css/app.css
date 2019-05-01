@@ -134,6 +134,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  opacity: 0.7;
+}
+
 a:visited {
   color: inherit;
 }
@@ -147,6 +151,7 @@ a:visited {
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
   line-height: 50px;
   background-color: white;
+  position: relative;
 }
 
 .c-navbar__title {
@@ -173,8 +178,89 @@ a:visited {
   cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+  .c-navbar__item {
+    display: none;
+  }
+}
+
 .c-navbar__item:hover {
   opacity: 0.7;
+}
+
+.c-navbar__span {
+  display: none;
+  cursor: pointer;
+  position: relative;
+  width: 30px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width:768px) {
+  .c-navbar__span {
+    display: block;
+  }
+}
+
+.c-navbar__span-1 {
+  position: absolute;
+  top: 17px;
+  background-color: black;
+  width: 100%;
+  height: 2px;
+}
+
+.c-navbar__span-2 {
+  position: absolute;
+  top: 25px;
+  background-color: black;
+  width: 100%;
+  height: 2px;
+}
+
+.c-navbar__span-3 {
+  position: absolute;
+  top: 33px;
+  background-color: black;
+  width: 100%;
+  height: 2px;
+}
+
+.c-navbar__menu-hide {
+  position: absolute;
+  top: -700px;
+  width: 100%;
+  text-align: center;
+  height: auto;
+  background-color: white;
+  padding: 20px 0;
+  transition: 0.5s;
+  opacity: 0.98;
+  z-index: 100;
+}
+
+.c-navbar__item-hide {
+  margin: 30px 0;
+  padding: 20px 0;
+  transition: 0.4s;
+}
+
+.c-navbar__item-hide:hover {
+  transition: 0.4s;
+  background-color: #F5F5F5;
+}
+
+.c-navbar__close {
+  float: right;
+  font-size: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.active {
+  top: 0;
+  transition: 0.5s;
 }
 
 #form {
@@ -182,6 +268,12 @@ a:visited {
   background-color: #F5F5F5;
   background-size: cover;
   padding: 50px;
+}
+
+@media screen and (max-width:500px) {
+  #form {
+    padding: 20px;
+  }
 }
 
 .c-form {
@@ -215,6 +307,7 @@ a:visited {
   margin: 10px 0;
   width: 100px;
   height: 30px;
+  border: 1px solid silver;
 }
 
 .c-form__area {
@@ -227,33 +320,51 @@ a:visited {
 .c-btn {
   width: 102%;
   height: 40px;
-  background-color: #3366FF;
   border-radius: 5px;
-  color: white;
+  color: #464646;
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
 .c-btn:hover {
-  background-color: #3366CC;
+  background-color: rgba(230, 230, 230, 0.6);
+  color: black;
+  cursor: pointer;
+}
+
+.p-comment__btn {
+  width: 20%;
+  height: 40px;
+  color: #464646;
+  border-radius: 5px;
+  font-size: 15px;
+  float: right;
+}
+
+.p-comment__btn:hover {
+  background-color: rgba(230, 230, 230, 0.6);
+  color: black;
   cursor: pointer;
 }
 
 .c-image__container {
   position: relative;
+  z-index: -10;
 }
 
 .c-image__top {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .c-image__container {
   position: relative;
+  z-index: -10;
 }
 
 .c-image__top {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .c-panel__container {
@@ -267,9 +378,24 @@ a:visited {
   border-radius: 8px;
 }
 
+@media screen and (max-width:500px) {
+  .c-panel__container {
+    font-size: 14px;
+    padding: 30px 30px;
+    max-width: 400px;
+    min-width: 100px;
+  }
+}
+
 #articles {
   background-color: #F5F5F5;
   padding: 50px;
+}
+
+@media screen and (max-width:500px) {
+  #articles {
+    padding: 20px;
+  }
 }
 
 .c-article__id {
@@ -279,6 +405,12 @@ a:visited {
 .c-article__title {
   font-size: 30px;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width:500px) {
+  .c-article__title {
+    font-size: 20px;
+  }
 }
 
 .c-article__body {
@@ -299,11 +431,17 @@ a:visited {
   margin-right: 30px;
 }
 
-#show {
+.show {
   width: cover;
   background-color: #F5F5F5;
   background-size: cover;
   padding: 50px;
+}
+
+@media screen and (max-width:500px) {
+  .show {
+    padding: 20px;
+  }
 }
 
 .p-show__title {
@@ -315,10 +453,17 @@ a:visited {
 .p-show__label {
   font-weight: bold;
   margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.p-show__newlabel {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .p-show__contents {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  padding: 0 10px;
 }
 
 .p-show__image {
@@ -350,32 +495,23 @@ a:visited {
 .p-comment__delete {
   width: 10%;
   height: 30px;
-  background-color: #FF9900;
+  background-color: white;
   border-radius: 5px;
-  color: white;
+  color: #FF9900;
   font-size: 10px;
   position: absolute;
-  right: -55px;
-  top: 3px;
+  right: -70px;
+  top: 5px;
+}
+
+@media screen and (max-width:500px) {
+  .p-comment__delete {
+    right: -40px;
+  }
 }
 
 .p-comment__delete:hover {
   opacity: 0.7;
-  cursor: pointer;
-}
-
-.p-comment__btn {
-  width: 20%;
-  height: 40px;
-  background-color: #3366FF;
-  border-radius: 5px;
-  color: white;
-  font-size: 15px;
-  float: right;
-}
-
-.p-comment__btn:hover {
-  background-color: #3366CC;
   cursor: pointer;
 }
 
@@ -398,7 +534,7 @@ a:visited {
 .p-comment__name {
   position: absolute;
   left: 10px;
-  top: -15px;
+  top: -17px;
   font-size: 12px;
 }
 
@@ -408,13 +544,15 @@ a:visited {
 
 .p-comment__date {
   position: absolute;
-  top: -14px;
+  top: -17px;
   right: 10px;
   font-size: 5px;
 }
 
 .p-message {
-  padding: 30px 0;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .p-message__left {
@@ -423,21 +561,30 @@ a:visited {
   height: auto;
   padding: 10px;
   border-radius: 8px;
-  margin: 20px;
+  margin: 40px;
   position: relative;
-  margin-left: 100px;
   text-align: center;
 }
 
 .p-message__left-name {
+  font-size: 11px;
   position: absolute;
-  left: -60px;
+  left: -75px;
+  top: -30px;
+}
+
+.p-message__left-image {
+  position: absolute;
+  left: -65px;
+  top: -10px;
+  width: 50px;
+  border-radius: 25px;
 }
 
 .p-message__left-date {
   font-size: 8px;
   position: absolute;
-  top: -12px;
+  top: -17px;
   right: 3px;
 }
 
@@ -447,21 +594,41 @@ a:visited {
   height: auto;
   padding: 10px;
   border-radius: 8px;
-  margin: 20px;
+  margin: 40px;
   position: relative;
   text-align: center;
 }
 
 .p-message__right-name {
+  font-size: 11px;
   position: absolute;
-  right: -60px;
+  right: -80px;
+  top: -30px;
+}
+
+.p-message__right-image {
+  position: absolute;
+  right: -65px;
+  top: -10px;
+  width: 50px;
+  border-radius: 25px;
 }
 
 .p-message__right-date {
   font-size: 8px;
   position: absolute;
-  top: -12px;
+  top: -17px;
   left: 3px;
+}
+
+.p-top__panel {
+  margin: 20px auto 0px;
+  width: 90%;
+  height: 40px;
+  padding: 10px;
+  overflow: scroll;
+  background-color: #F5F5F5;
+  font-size: 14px;
 }
 
 .p-top__container {
@@ -478,6 +645,7 @@ a:visited {
   font-size: 150px;
   color: white;
   margin-bottom: 10px;
+  line-height: 1;
 }
 
 @media screen and (max-width:768px) {
@@ -486,9 +654,9 @@ a:visited {
   }
 }
 
-@media screen and (max-width:414px) {
+@media screen and (max-width:500px) {
   .p-top__title {
-    font-size: 80px;
+    font-size: 50px;
   }
 }
 
@@ -498,6 +666,7 @@ a:visited {
 
 body {
   font-family: "M PLUS Rounded 1c", sans-serif;
+  line-height: 1.5;
 }
 
 .pb-3 {
