@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="form">
-  <div class="c-form">
+  <div class="c-panel__container">
         <div class="c-form__head">
           ログイン
         </div>
@@ -33,7 +33,7 @@
 
           <div class="">
 
-            <a href="{{ url('/email')}}">  <p>パスワード忘れ</p></a>
+            <a href="{{ url('/email')}}">  <p>パスワードを忘れた場合</p></a>
           </div>
         </div>
   </div>

@@ -1,16 +1,24 @@
 <template>
 
  <div id="articles">
+   <div class="c-article__sort">
+     <button  name="button" class="sort__btn" @click="sortSingle">単発</button>
+     <button  name="button" class="sort__btn" @click="sortRevenue">サービス開発</button>
+     <button  name="button" class="sort__btn" @click="sortDefault">全件</button>
+   </div>
 
    <div class="c-article__title">
      案件一覧
+
    </div>
+
 
      <Article
 
         v-for="article in articles"
         :key="article.id"
         :article="article"
+        v-if="article.kind !== sort"
 
      />
 
@@ -42,25 +50,43 @@ export default {
   data(){
     return{
       articles:[],
+      sort:'',
       currentPage:0,
       lastPage: 0
     }
   },
-   mounted(){
-    var self = this;
-    var url = `/ajax/articles`
-    axios.get(url).then(function(response){
-      self.articles = response.data
-      // self.currentPage = response.data.current_page
-      // self.lastPage = response.data.last_page
+  methods:{
+    sortSingle:function(){
+     this.sort = 'revenue'
+    },
+    sortRevenue:function(){
+    this.sort = 'single'
+    },
+    sortDefault:function(){
+    this.sort = ''
+    },
+  },
+  mounted(){
+    this.$nextTick(function(){
+
+      var self = this;
+      var url = `/ajax/articles/?page=${self.page}`
+      axios.get(url).then(function(response){
+        self.articles = response.data.data
+        self.currentPage = response.data.current_page
+        self.lastPage = response.data.last_page
+      });
+
     });
 
-    this.getMessages();
-
-    Echo.channel('apply')
-    .listen('ApplyPusher',(e)=> {
-      this.getMessages();
-      console.log(this.getMessages());
+  },
+  updated(){
+    var self = this;
+    var url = `/ajax/articles/?page=${self.page}`
+    axios.get(url).then(function(response){
+      self.articles = response.data.data
+      self.currentPage = response.data.current_page
+      self.lastPage = response.data.last_page
     });
   },
 }

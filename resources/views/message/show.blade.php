@@ -30,7 +30,7 @@
                  <input type="text" name="user_name" value="{{Auth::user()->name}}" style="display:none;">
 
                   <div class="text-right">
-                    <button type="submit" name="button" class="p-comment__btn btn-primary">投稿</button>
+                    <button type="submit" name="button" class="p-small__btn btn-primary">投稿</button>
                   </div>
                 </form>
               </div>

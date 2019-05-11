@@ -14,7 +14,7 @@
   }
 }
 
-.p-comment__btn{
+.p-small__btn{
   width: 20%;
   height: 40px;
   color: rgb(70,70,70);
@@ -27,4 +27,42 @@
     color: black;
     cursor: pointer;
   }
+}
+
+.sort__btn{
+    margin-right: 10px;
+    float: right;
+    width: 10%;
+    height: 40px;
+    color: rgb(70,70,70);
+    border-radius: 5px;
+    font-size: 10px;
+    &:hover{
+      background-color: rgba(230,230,230,0.6);
+      color: black;
+      cursor: pointer;
+    }
+}
+
+.back__btn{
+ margin-top: 25px;
+ margin-left: 10px;
+}
+
+.tweet__btn{
+  color:white;
+  margin-left: 20px;
+  line-height: 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 2px 5px;
+  background-color: #00acee;
+}
+
+.pagi__button{
+  background-color: white;
+  border: 1px solid silver;
+  border-radius: 4px;
+  padding:  5px;
+
 }

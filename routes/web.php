@@ -14,11 +14,13 @@
 
 
 
-
+// 関数内のルートはログインしていなければ表示できない
 Route::group(['middleware' => 'auth'],function(){
 
 Route::get('/', 'ArticleController@top')->name('top');
 
+
+// /index/~でURLを指定した場合~がどんな値でもarticle.indexを返す
 Route::get('/index/{any?}',function(){
   return view('article.index');
 })->where('any','.+');
@@ -31,7 +33,8 @@ Route::get('/articleEdit/{id}','ArticleController@edit')->name('article.edit');
 Route::post('/articleUpdate/{id}','ArticleController@update')->name('article.update');
 Route::get('/articles/{id}','ArticleController@show')->name('article.show');
 
-// ajax
+
+// ajax(vueへデータを送る用)
 Route::get('/ajax/articles','Ajax\ArticlesController@index');
 Route::get('/ajax/articles/{id}','Ajax\ArticlesController@show');
 Route::get('/ajax/user/{id}','Ajax\ArticlesController@user');
@@ -41,7 +44,8 @@ Route::get('/ajax/currentUser/{id}','Ajax\ArticlesController@currentUser');
 
 
 // comment
-Route::post('/comment_delete/{id}','CommentController@destroy')->name('comment.delete');;
+Route::get('/comment/index','CommentController@index')->name('comment.index');
+Route::post('/comment_delete/{id}','CommentController@destroy')->name('comment.delete');
 Route::post('/comment/{id}','CommentController@store')->name('comment.store');
 
 
@@ -55,12 +59,11 @@ Route::post('/profEdit/update','UserController@update')->name('user.update');
 
 
 // board
+Route::get('/board/index','BoardsController@index')->name('board.index');
 Route::get('/board/{id}','BoardsController@show')->name('board.show');
 Route::post('/board','BoardsController@store')->name('board.store');
 Route::get('/show_board/{id}','BoardsController@show_board')->name('show_board');
 
-// twitter
-Route::get('/twitter','TwitterController@tweet')->name('twitter.tweet');
 
 });
 

@@ -8,6 +8,10 @@
     overflow: scroll;
     background-color: #F5F5F5;
     font-size: 14px;
+
+    @include mq(lg){
+
+    }
   }
 
   &__container{
@@ -15,10 +19,17 @@
   height: auto;
   margin: 0 auto;
   position: absolute;
-  top: 60%;
+  top: 30%;
   left: 0;
   right: 0;
 
+  @include mq(lg){
+  top: 37%;
+
+  }
+  @include mq(md){
+  top: 60%;
+  }
 
 
   }
@@ -27,8 +38,11 @@
   color: white;
   margin-bottom: 10px;
   line-height: 1;
+  @include mq(lg){
+  font-size: 120px;
+  }
   @include mq(md){
-  font-size: 100px;
+  font-size: 90px;
   }
 
   @include mq(sm){

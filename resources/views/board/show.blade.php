@@ -8,16 +8,13 @@
 
 
 
-    <section class="show">
-
-
+<section class="show">
 
 
 <div class="p-message">
 
-  <div class="p-show__contents">
-      {{ $article->title}}
-  </div>
+
+  <a class="p-show__contents" href="{{ route('article.show',$article->id)}}">{{ $article->title}}</a>
 
       @foreach($messages as $message)
 
@@ -66,12 +63,13 @@
                  <input type="text" name="board_id" value="{{$board->id}}" style="display:none;">
 
                   <div class="text-right">
-                    <button type="submit" name="button" class="p-comment__btn btn-primary">投稿</button>
+                    <button type="submit" name="button" class="p-small__btn btn-primary">投稿</button>
                   </div>
                 </form>
               </div>
 
 
+              <a class="pagi__button" href="{{URL::previous()}}"> &laquo; Back</a>
 
     </section>
 

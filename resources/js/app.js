@@ -57,7 +57,7 @@ channel.bind('my-event', function(data) {
 
 // ハンバーガーメニュー切り替え,ログアウト用
 new Vue({
-  el:'#js-navbar',
+  el:'#js-logout',
   data(){
     return{
           isActive:false,
@@ -67,6 +67,16 @@ new Vue({
     logout:function(event){
       event.preventDefault();
       document.getElementById('logout-form').submit();
+    },
+  },
+})
+// footerログアウト用
+new Vue({
+  el:'#js-logout-footer',
+  methods:{
+    logout:function(event){
+      event.preventDefault();
+      document.getElementById('logout-form-footer').submit();
     },
   },
 })

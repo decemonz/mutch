@@ -16,4 +16,5 @@ class MessagesController extends Controller
 
         return redirect()->route('show_board',$message->board_id);
     }
+
 }

@@ -6,7 +6,7 @@
 
 @section('content')
 
-
+<!-- このdiv内にvueコンポーネントを表示させる -->
 <div id="app">
 
 </div>

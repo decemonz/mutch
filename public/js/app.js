@@ -2126,11 +2126,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2141,13 +2136,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      // 案件種別表示用の初期値
       kind: 'single',
       article: {},
       user: {},
-      comments: {},
+      comments: false,
       boards: {},
       currentUser: '',
       applyed: true,
+      // headのmetaタグに記載しているcsrfトークンの値をjsで取得
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       commentBody: ''
     };
@@ -2164,6 +2161,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/board', boardFormData).then(this.$router.go("/board/".concat(this.article.id)));
     },
+    // コメント投稿
     commentSubmit: function commentSubmit() {
       var commentFormData = {
         body: this.commentBody,
@@ -2171,23 +2169,26 @@ __webpack_require__.r(__webpack_exports__);
         article_id: this.article.id,
         _token: this.csrf
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment/".concat(this.article.id), commentFormData).then(this.$router.go({
-        name: 'ArticleDetail'
-      }));
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment/".concat(this.article.id), commentFormData).then(this.$router.go("/board/".concat(this.article.id)));
     },
+    // コメント削除
     commentDelete: function commentDelete() {
       var commentId = document.getElementById('comment-id').value;
       var commentDeleteData = {
         _token: this.csrf
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment_delete/".concat(commentId), commentDeleteData).then(this.$router.go({
-        name: 'ArticleDetail'
-      }));
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment_delete/".concat(commentId), commentDeleteData).then(this.$router.go());
     },
+    // 編集ページへのリンク
     articleEdit: function articleEdit() {
       this.$router.push("/articleEdit/".concat(this.article.id));
+    },
+    // ツイッターシェアボタンへのリンク
+    tweet: function tweet() {
+      document.getElementById('tweet').href += this.article.id + "&text=" + this.article.title;
     }
   },
+  // laravelよりajaxで送ったデータを変数に格納
   mounted: function mounted() {
     var self = this;
     var url = "/ajax/articles/".concat(this.id);
@@ -2252,6 +2253,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2270,24 +2279,40 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       articles: [],
+      sort: '',
       currentPage: 0,
       lastPage: 0
     };
   },
+  methods: {
+    sortSingle: function sortSingle() {
+      this.sort = 'revenue';
+    },
+    sortRevenue: function sortRevenue() {
+      this.sort = 'single';
+    },
+    sortDefault: function sortDefault() {
+      this.sort = '';
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
-
-    var self = this;
-    var url = "/ajax/articles";
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
-      self.articles = response.data; // self.currentPage = response.data.current_page
-      // self.lastPage = response.data.last_page
+    this.$nextTick(function () {
+      var self = this;
+      var url = "/ajax/articles/?page=".concat(self.page);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
+        self.articles = response.data.data;
+        self.currentPage = response.data.current_page;
+        self.lastPage = response.data.last_page;
+      });
     });
-    this.getMessages();
-    Echo.channel('apply').listen('ApplyPusher', function (e) {
-      _this.getMessages();
-
-      console.log(_this.getMessages());
+  },
+  updated: function updated() {
+    var self = this;
+    var url = "/ajax/articles/?page=".concat(self.page);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
+      self.articles = response.data.data;
+      self.currentPage = response.data.current_page;
+      self.lastPage = response.data.last_page;
     });
   }
 });
@@ -13050,7 +13075,7 @@ var render = function() {
               _vm._v("\n      単発\n    ")
             ])
           : _c("p", { staticClass: "c-article__kind" }, [
-              _vm._v("\n      レべニューシェア\n    ")
+              _vm._v("\n      サービス開発\n    ")
             ]),
         _vm._v(" "),
         _c("div", { staticClass: "c-article__body" }, [
@@ -13085,14 +13110,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "pagination" },
+    { staticClass: "pagination mt-3" },
     [
       !_vm.isFirstPage
         ? _c(
             "Router-link",
             {
-              staticClass: "page-button",
-              attrs: { to: "/?page=" + (_vm.currentPage - 1) }
+              staticClass: "pagi__button",
+              attrs: { to: "/index/?page=" + (_vm.currentPage - 1) }
             },
             [_vm._v("« prev\n\n  ")]
           )
@@ -13102,8 +13127,8 @@ var render = function() {
         ? _c(
             "Router-link",
             {
-              staticClass: "page-button",
-              attrs: { to: "/?page=" + (_vm.currentPage + 1) }
+              staticClass: "pagi__button",
+              attrs: { to: "/index/?page=" + (_vm.currentPage + 1) }
             },
             [_vm._v("next »\n\n  ")]
           )
@@ -13145,13 +13170,34 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "p-comment__btn p-show__edit",
+                staticClass: "p-small__btn p-show__edit",
                 on: { click: _vm.articleEdit }
               },
               [_vm._v("編集")]
             )
           ])
         : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "tweet__btn",
+          staticStyle: { color: "white" },
+          attrs: {
+            id: "tweet",
+            href:
+              "https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"
+          },
+          on: { click: _vm.tweet }
+        },
+        [
+          _c("i", {
+            staticClass: "fab fa-twitter",
+            staticStyle: { "margin-right": "3px" }
+          }),
+          _vm._v("tweet")
+        ]
+      ),
       _vm._v(" "),
       _c("p", { staticClass: "p-show__title" }, [
         _vm._v(_vm._s(_vm.article.title))
@@ -13165,14 +13211,11 @@ var render = function() {
       _vm._v(" "),
       _c("h1", { staticClass: "p-show__label" }, [_vm._v("案件種別")]),
       _vm._v(" "),
-      _c("p", { staticClass: "p-show__contents" }),
       _vm.article.kind === "single"
         ? _c("div", { staticClass: "p-show__contents" }, [
             _vm._v("\n            単発\n        ")
           ])
-        : _c("div", [_vm._v("\n            レベニューシェア\n        ")]),
-      _vm._v(" "),
-      _c("p"),
+        : _c("div", [_vm._v("\n            サービス開発\n        ")]),
       _vm._v(" "),
       _vm.article.kind === "single"
         ? _c("h1", { staticClass: "p-show__label" }, [_vm._v("金額")])
@@ -13194,19 +13237,34 @@ var render = function() {
         _vm._v("\n\n            " + _vm._s(_vm.article.body) + "\n\n          ")
       ]),
       _vm._v(" "),
-      _vm.article.id !== _vm.currentUser.id
+      _vm.article.user_id !== _vm.currentUser.id
         ? _c(
             "div",
             [
               _vm._l(_vm.boards, function(board) {
                 return _c("div", [
                   board.user_id === _vm.currentUser.id
-                    ? _c("div", [_vm._m(0, true)])
+                    ? _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: "/show_board/" + board.id,
+                            "v-bind": (_vm.applyed = false)
+                          }
+                        },
+                        [
+                          _c(
+                            "button",
+                            { staticClass: "c-btn", attrs: { name: "button" } },
+                            [_vm._v("取引メッセージへ\n              ")]
+                          )
+                        ]
+                      )
                     : _vm._e()
                 ])
               }),
               _vm._v(" "),
-              _vm.applyed
+              _vm.applyed === true
                 ? _c("div", {}, [
                     _c(
                       "form",
@@ -13323,7 +13381,7 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "p-comment__btn btn-primary",
+                  staticClass: "p-small__btn btn-primary",
                   attrs: { type: "submit", name: "button" },
                   on: { click: _vm.commentSubmit }
                 },
@@ -13334,7 +13392,11 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "p-comment__label" }, [_vm._v("コメント一覧")]),
+      _vm.comments.length > 0
+        ? _c("div", { staticClass: "p-comment__label" }, [
+            _vm._v("コメント一覧")
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -13392,21 +13454,14 @@ var render = function() {
         }),
         0
       )
+    ]),
+    _vm._v(" "),
+    _c("a", { staticClass: "pagi__button", attrs: { href: "" } }, [
+      _vm._v(" « Back")
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "" } }, [
-      _c("button", { staticClass: "c-btn", attrs: { name: "button" } }, [
-        _vm._v("取引メッセージへ\n              ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -13432,12 +13487,46 @@ var render = function() {
     "div",
     { attrs: { id: "articles" } },
     [
+      _c("div", { staticClass: "c-article__sort" }, [
+        _c(
+          "button",
+          {
+            staticClass: "sort__btn",
+            attrs: { name: "button" },
+            on: { click: _vm.sortSingle }
+          },
+          [_vm._v("単発")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "sort__btn",
+            attrs: { name: "button" },
+            on: { click: _vm.sortRevenue }
+          },
+          [_vm._v("サービス開発")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "sort__btn",
+            attrs: { name: "button" },
+            on: { click: _vm.sortDefault }
+          },
+          [_vm._v("全件")]
+        )
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "c-article__title" }, [
-        _vm._v("\n     案件一覧\n   ")
+        _vm._v("\n     案件一覧\n\n   ")
       ]),
       _vm._v(" "),
       _vm._l(_vm.articles, function(article) {
-        return _c("Article", { key: article.id, attrs: { article: article } })
+        return article.kind !== _vm.sort
+          ? _c("Article", { key: article.id, attrs: { article: article } })
+          : _vm._e()
       }),
       _vm._v(" "),
       _c("Pagination", {
@@ -28366,7 +28455,7 @@ channel.bind('my-event', function (data) {
 }); // ハンバーガーメニュー切り替え,ログアウト用
 
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#js-navbar',
+  el: '#js-logout',
   data: function data() {
     return {
       isActive: false
@@ -28376,6 +28465,16 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     logout: function logout(event) {
       event.preventDefault();
       document.getElementById('logout-form').submit();
+    }
+  }
+}); // footerログアウト用
+
+new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+  el: '#js-logout-footer',
+  methods: {
+    logout: function logout(event) {
+      event.preventDefault();
+      document.getElementById('logout-form-footer').submit();
     }
   }
 });
@@ -28396,8 +28495,8 @@ __webpack_require__.r(__webpack_exports__);
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "8f531320589dac674c15",
+  cluster: "ap3",
   encrypted: true
 });
 
@@ -28772,13 +28871,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var routes = [{
   path: '/index',
   component: _pages_ArticleList_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-  props: true // route => {
-  //   const page = rute.query.page
-  //   return {
-  //      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
-  //   }
-  // }
-
+  props: function props(route) {
+    var page = route.query.page;
+    return {
+      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
+    };
+  }
 }, {
   path: '/index/articles/:id',
   component: _pages_ArticleDetail_vue__WEBPACK_IMPORTED_MODULE_3__["default"],

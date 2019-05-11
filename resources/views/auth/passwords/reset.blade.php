@@ -16,6 +16,7 @@
           @endif
           <form class="" action="{{ route('password.update')}}" method="post">
             @csrf
+            <input type="hidden" name="token" value="{{ $token }}" />
             <div class="c-form__group">
               <label for="email">メールアドレス</label>
               <input type="text" class="c-form__control" id="email" name="email" value="{{ old('email')}}" />
@@ -26,7 +27,7 @@
               <input type="password" class="c-form__control" id="password" name="password" >
             </div>
             <div class="c-form__group">
-              <label for="password-confirm">新しいパスワード</label>
+              <label for="password-confirm">新しいパスワード(確認)</label>
               <input type="password" class="c-form__control" id="password-confirm" name="password_confirmation" >
             </div>
 

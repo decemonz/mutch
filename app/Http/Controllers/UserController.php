@@ -14,13 +14,19 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+    // public function __construct()
+    //   {
+    //       $this->middleware('prof')
+    //           ->except(['index']);
+    //   }
+
     public function show(){
 
       $user = Auth::user();
 
       $user_id = $user->id;
       // ユーザー投稿案件取得
-      $articles = Article::where('user_id',$user_id)->get();
+      $articles = Article::where('user_id',$user_id)->simplePaginate(2);
       // 取引中案件ボード取得(自分が募集をかけている案件一覧)
       $client_boards = Board::where('client_id',$user_id)->get();
       // 応募中案件ボード取得(自分が応募している案件一覧)

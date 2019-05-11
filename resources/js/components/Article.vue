@@ -18,7 +18,7 @@
         単発
       </p>
       <p class="c-article__kind" v-else>
-        レべニューシェア
+        サービス開発
       </p>
 
       <div class="c-article__body">

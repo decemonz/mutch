@@ -34,6 +34,13 @@
     }
   }
 
+  &__contents{
+    padding: 10px 10px 0px;
+    min-height: 100px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
 
 
   &__container{

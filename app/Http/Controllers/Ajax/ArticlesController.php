@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class ArticlesController extends Controller
 {
   public function index(){
-    $articles = Article::all();
+    $articles = Article::paginate(3);
     return $articles;
 
   }
@@ -37,11 +37,11 @@ class ArticlesController extends Controller
   }
 
   public function boards($id){
-    $article = Article::find($id);
+
     // 記事に紐づくボードを取得
     $boards = Board::where('article_id',$id)->get();
 
-    return $board;
+    return $boards;
   }
 
   public function currentUser($id){

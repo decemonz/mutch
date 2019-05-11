@@ -8,18 +8,19 @@ use App\Article;
 use App\User;
 use App\Board;
 use Illuminate\Support\Facades\Auth;
-use Abraham\TwitterOAuth\TwitterOAuth;
 
 class ArticleController extends Controller
 {
     //
+    public function __construct(){
+      $this->middleware('article')->except(['top','index','create','store','show']);
+    }
 
     public function top(){
       $user = Auth::user();
       $user_id = $user->id;
-      $articles = Article::where('user_id',$user_id)->get();
-      $boards = Board::where('user_id',$user_id)->get();
-      // $articles = Article::all();
+      $articles = Auth::user()->articles;
+      $boards = Board::where('client_id',$user_id)->get();
       return view('pages.top',compact('articles','user','boards'));
     }
 

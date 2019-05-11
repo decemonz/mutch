@@ -2,10 +2,20 @@
   &__container{
   position: relative;
   z-index: -10;
+  text-align: center;
+
+   @include mq(md){
+    text-align: inherit;
+   }
+
   }
   &__top{
-
-    width: 100%;
+    width: 90%;
     margin-top: 20px;
+
+    @include mq(md){
+      width: 100%;
+
+    }
   }
 }

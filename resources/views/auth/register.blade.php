@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
-<div id="register">
-  <div class="c-form">
+<div class="show">
+  <div class="c-panel__container">
         <div class="c-form__head">
           会員登録
         </div>

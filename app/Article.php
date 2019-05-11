@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+
+      protected $perPage = 3;
+
       protected $fillable = [
       'title','body','hi_price','low_price','kind',
     ];

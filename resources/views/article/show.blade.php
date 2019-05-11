@@ -6,16 +6,18 @@
 
 @section('content')
 
-<div id="show">
+<div class="show">
 
 
   <div class="c-panel__container">
 
       <p class="p-show__number">No.{{ $article->id}}</p>
 
-  @if($article->id === Auth::user()->id)
+        <a id="tweet" class="tweet__btn" style="color:white;" href="https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"><i class="fab fa-twitter"></i>tweet</a>
+
+  @if($article->user_id === Auth::user()->id)
       <a href="{{ url('articleEdit',$article->id)}}">
-        <button class="p-comment__btn p-show__edit">編集</button>
+        <button class="p-small__btn p-show__edit">編集</button>
       </a>
   @endif
 　
@@ -53,13 +55,13 @@
       <?php $applyed = false ?>
 
 <!-- ログインユーザーが投稿した記事の場合は応募できないようにする -->
-@if($article->id !== Auth::user()->id)
+@if($article->user_id !== Auth::user()->id)
 
 @foreach($boards as $board)
 
     <!-- ボードidに現在ぼログインユーザーidが存在する場合は応募済みのため取引メッセージへのリンクを表示 -->
     @if($board->user_id === Auth::user()->id )
-      <a href="{{ url('board',$article->id)}}">
+      <a href="{{ url('show_board',$board->id)}}">
           <button name="button" class="c-btn">取引メッセージへ
           </button>
       </a>
@@ -116,7 +118,7 @@
 
                 <input type="text" name="article_id" value="{{$article->id}}" style="display:none;">
               <div class="text-right">
-                <button type="submit" name="button" class="p-comment__btn btn-primary">投稿</button>
+                <button type="submit" name="button" class="p-small__btn btn-primary">投稿</button>
               </div>
 
             </form>
@@ -147,6 +149,9 @@
 
   </div>
 
+  <div class="back__btn">
+      <a class="" href="{{URL::previous()}}"><i class="fas fa-backward"></i> Back</a>
+  </div>
 
 
 

@@ -51,6 +51,12 @@
           </form>
         </div>
   </div>
+
+  <div class="back__btn">
+    <a class="pagi__button" href="{{URL::previous()}}"> &laquo; Back</a>
+
+  </div>
+
 </div>
 @endsection
 @section('footer')

@@ -1,12 +1,12 @@
 <template >
 
-<div class="pagination">
+<div class="pagination mt-3">
 
   <Router-link
 
     v-if="! isFirstPage"
-    :to="`/?page=${currentPage - 1}`"
-    class="page-button"
+    :to="`/index/?page=${currentPage - 1}`"
+    class="pagi__button"
     >&laquo; prev
 
   </Router-link>
@@ -14,8 +14,8 @@
   <Router-link
 
     v-if="! isLastPage"
-    :to="`/?page=${currentPage + 1}`"
-    class="page-button"
+    :to="`/index/?page=${currentPage + 1}`"
+    class="pagi__button"
     >next &raquo;
 
   </Router-link>

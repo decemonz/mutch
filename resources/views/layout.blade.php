@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title></title>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Patua+One|Source+Serif+Pro" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,6 +23,34 @@
 
 @yield('content')
     <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <footer class="p-footer" >
+
+
+        <ul class="p-footer__list" id="js-logout-footer">
+          @if(Auth::check())
+          <li class="p-footer__item"> <a href="{{ route('article.index')}}">案件一覧 |</a> </li>
+          <li class="p-footer__item" > <a href="" @click="logout">ログアウト |</a> </li>
+          <form class="" id="logout-form-footer" action="{{ route('logout')}}" method="post" style="display:none;">
+            @csrf
+          </form>
+          <li class="p-footer__item"> <a href="{{ route('article.create')}}">案件登録 |</a> </li>
+          <li class="p-footer__item"> <a href="{{ route('user.show')}}">マイページ</a> </li>
+
+
+          @else
+          <li class="p-footer__item"> <a href="/login">ログイン |</a> </li>
+          <li class="p-footer__item"> <a href="/register">ユーザー登録 |</a> </li>
+          @endif
+          <li class="p-footer__copyright"> Copyright ©2019 LLC. All Rights Reserved.</li>
+        </ul>
+
+
+
+
+
+
+    </footer>
   </body>
 </html>
 @yield('footer')

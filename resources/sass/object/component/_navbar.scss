@@ -1,7 +1,7 @@
 .c-navbar{
+  padding: 0 50px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   height: 50px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .1);
@@ -9,7 +9,10 @@
   background-color: white;
   position: relative;
 
+  @include mq(md){
+    padding: 0;
 
+  }
 
   &__title{
   font-size: 20px;

@@ -6,13 +6,11 @@
 
 @section('content')
 
+@if($boards)
+
 <div class="p-top__panel">
 
-<div class="">
-  最新応募があります
-
-</div>
-
+    ユーザーより最新応募があります
 
   @foreach($boards as $board)
 
@@ -37,6 +35,8 @@
   @endforeach -->
 
 </div>
+
+@endif
 
 
 <div class="c-image__container">

@@ -26,7 +26,7 @@
             </div>
             <div class="c-form__group">
               <label for="body">自己紹介</label>
-              <textarea name="body" rows="8" cols="80" class="c-form__area">{{ $user->bpdy}}</textarea>
+              <textarea name="body" rows="8" cols="80" class="c-form__area">{{ $user->body}}</textarea>
             </div>
             <div class="text-right">
               <button type="submit" name="button" class="c-btn btn-primary">送信</button>
@@ -34,5 +34,6 @@
           </form>
         </div>
   </div>
+                <a class="pagi__button" href="{{URL::previous()}}"> &laquo; Back</a>
 </div>
 @endsection

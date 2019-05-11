@@ -1,4 +1,4 @@
-<nav class="navbar" id="js-navbar">
+<nav class="navbar" id="js-logout">
 
   <div class="c-navbar">
 
@@ -28,9 +28,7 @@
          <div class="c-navbar__item">
           <a href="{{ route('article.create')}}">案件登録</a>
          </div>
-         <div class="c-navbar__item">
-          <a href="{{ route('twitter.tweet')}}">ツイート</a>
-         </div>
+
 
          @else
 
@@ -73,7 +71,7 @@
                <a href="#"  @click="logout">ログアウト</a>
              </div>
 
-             <form class="" id="logout-form" action="{{ route('logout')}}" method="post" style="display:none;">
+             <form class=""  action="{{ route('logout')}}" method="post" style="display:none;">
                @csrf
              </form>
 
