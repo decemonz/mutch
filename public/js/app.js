@@ -2126,6 +2126,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2169,7 +2174,9 @@ __webpack_require__.r(__webpack_exports__);
         article_id: this.article.id,
         _token: this.csrf
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment/".concat(this.article.id), commentFormData).then(this.$router.go("/board/".concat(this.article.id)));
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment/".concat(this.article.id), commentFormData).then(this.$router.go({
+        name: 'ArticleDetail'
+      }));
     },
     // コメント削除
     commentDelete: function commentDelete() {
@@ -2177,7 +2184,14 @@ __webpack_require__.r(__webpack_exports__);
       var commentDeleteData = {
         _token: this.csrf
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment_delete/".concat(commentId), commentDeleteData).then(this.$router.go());
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/comment_delete/".concat(commentId), commentDeleteData).then(this.$router.go({
+        name: 'ArticleDetail'
+      }));
+    },
+    back: function back() {
+      this.$router.go({
+        name: 'ArticleList'
+      });
     },
     // 編集ページへのリンク
     articleEdit: function articleEdit() {
@@ -13072,10 +13086,10 @@ var render = function() {
         _vm._v(" "),
         _vm.article.kind === "single"
           ? _c("p", { staticClass: "c-article__kind" }, [
-              _vm._v("\n      単発\n    ")
+              _vm._v("\n      単発案件\n    ")
             ])
           : _c("p", { staticClass: "c-article__kind" }, [
-              _vm._v("\n      サービス開発\n    ")
+              _vm._v("\n      レベニューシェア案件\n    ")
             ]),
         _vm._v(" "),
         _c("div", { staticClass: "c-article__body" }, [
@@ -13185,6 +13199,7 @@ var render = function() {
           staticStyle: { color: "white" },
           attrs: {
             id: "tweet",
+            target: "newwindow",
             href:
               "https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"
           },
@@ -13213,9 +13228,11 @@ var render = function() {
       _vm._v(" "),
       _vm.article.kind === "single"
         ? _c("div", { staticClass: "p-show__contents" }, [
-            _vm._v("\n            単発\n        ")
+            _vm._v("\n            単発案件\n        ")
           ])
-        : _c("div", [_vm._v("\n            サービス開発\n        ")]),
+        : _c("div", { staticClass: "p-show__contents" }, [
+            _vm._v("\n            レベニューシェア案件\n        ")
+          ]),
       _vm._v(" "),
       _vm.article.kind === "single"
         ? _c("h1", { staticClass: "p-show__label" }, [_vm._v("金額")])
@@ -13231,7 +13248,7 @@ var render = function() {
             )
           ])
         : _vm._e(),
-      _c("h1", { staticClass: "p-show__label pb-3" }, [_vm._v("内容")]),
+      _c("h1", { staticClass: "p-show__label" }, [_vm._v("内容")]),
       _vm._v(" "),
       _c("p", { staticClass: "p-show__contents" }, [
         _vm._v("\n\n            " + _vm._s(_vm.article.body) + "\n\n          ")
@@ -13417,47 +13434,51 @@ var render = function() {
               _vm._v(_vm._s(comment.created_at))
             ]),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                attrs: { action: "", method: "post" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.submit($event)
-                  }
-                }
-              },
-              [
-                _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
-                  domProps: { value: _vm.csrf }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", id: "comment-id" },
-                  domProps: { value: comment.id }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
+            comment.user_name === _vm.currentUser.name
+              ? _c(
+                  "form",
                   {
-                    staticClass: "p-comment__delete btn-primary",
-                    attrs: { type: "submit", name: "button" },
-                    on: { click: _vm.commentDelete }
+                    attrs: { action: "", method: "post" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submit($event)
+                      }
+                    }
                   },
-                  [_vm._v("削除")]
+                  [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", id: "comment-id" },
+                      domProps: { value: comment.id }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "p-comment__delete btn-primary",
+                        attrs: { type: "submit", name: "button" },
+                        on: { click: _vm.commentDelete }
+                      },
+                      [_vm._v("削除")]
+                    )
+                  ]
                 )
-              ]
-            )
+              : _vm._e()
           ])
         }),
         0
       )
     ]),
     _vm._v(" "),
-    _c("a", { staticClass: "pagi__button", attrs: { href: "" } }, [
-      _vm._v(" « Back")
+    _c("div", { staticClass: "back__btn" }, [
+      _c("a", { staticClass: "pagi__button", on: { click: _vm.back } }, [
+        _vm._v(" « Back")
+      ])
     ])
   ])
 }
@@ -13505,7 +13526,7 @@ var render = function() {
             attrs: { name: "button" },
             on: { click: _vm.sortRevenue }
           },
-          [_vm._v("サービス開発")]
+          [_vm._v("レベニュー")]
         ),
         _vm._v(" "),
         _c(
@@ -28408,7 +28429,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_ArticleList_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/ArticleList.vue */ "./resources/js/pages/ArticleList.vue");
 
 
- // import store from './store'
 
 
 
@@ -28417,7 +28437,6 @@ __webpack_require__.r(__webpack_exports__);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: _router__WEBPACK_IMPORTED_MODULE_2__["default"],
-  // store,
   components: {
     App: _App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
@@ -28425,33 +28444,13 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   data: {
     articles: {}
   }
-}); // logout送信用
-// new Vue({
-//     el: '#logout',
-//     methods:{
-//       logout:function(event){
-//         event.preventDefault();
-//         document.getElementById('logout-form').submit();
-//       }
-//     }
-// })
-// 案件種別選択用
+}); // 案件種別選択用
 
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#kind',
   data: {
     kind: 'single'
   }
-}); // 通知用
-
-Pusher.logToConsole = true;
-var pusher = new Pusher('8f531320589dac674c15', {
-  cluster: 'ap3',
-  forceTLS: true
-});
-var channel = pusher.subscribe('my-channel');
-channel.bind('my-event', function (data) {
-  $.notify(data.message, 'info');
 }); // ハンバーガーメニュー切り替え,ログアウト用
 
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -28911,7 +28910,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/lib/loader.js):\n\n  @media #{map-get($breakpoints,$breakpoint)}{\n        ^\n      Expected identifier.\n   ╷\n18 │   @media {\n   │          ^\n   ╵\n  stdin 18:10                                       mq()\n  resources/sass/object/project/_message.scss 72:5  @import\n  stdin 33:9                                        root stylesheet\n      in /Applications/MAMP/htdocs/match/resources/sass/app.scss (line 18, column 10)\n    at runLoaders (/Applications/MAMP/htdocs/match/node_modules/webpack/lib/NormalModule.js:301:20)\n    at /Applications/MAMP/htdocs/match/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Applications/MAMP/htdocs/match/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/Applications/MAMP/htdocs/match/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at render (/Applications/MAMP/htdocs/match/node_modules/sass-loader/lib/loader.js:52:13)\n    at Function.$2 (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:24366:48)\n    at wN.$2 (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:15294:15)\n    at uS.vr (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:9034:42)\n    at uS.vq (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:9036:32)\n    at iy.uD (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8384:46)\n    at ur.$0 (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8526:7)\n    at Object.eG (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:1512:80)\n    at ad.ba (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8447:3)\n    at iM.ba (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8377:25)\n    at iM.cv (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8364:6)\n    at px.cv (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8154:35)\n    at Object.m (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:1383:19)\n    at /Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:5066:51\n    at xd.a (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:1394:71)\n    at xd.$2 (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8169:23)\n    at vQ.$2 (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8164:25)\n    at uS.vr (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:9034:42)\n    at uS.vq (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:9036:32)\n    at iy.uD (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8384:46)\n    at ur.$0 (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8526:7)\n    at Object.eG (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:1512:80)\n    at ad.ba (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8447:3)\n    at iM.ba (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8377:25)\n    at iM.cv (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8364:6)\n    at Object.eval (eval at CI (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:648:15), <anonymous>:3:37)\n    at uS.vr (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:9034:42)\n    at uS.vq (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:9036:32)\n    at iy.uD (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8384:46)\n    at ur.$0 (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8526:7)\n    at Object.eG (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:1512:80)\n    at ad.ba (/Applications/MAMP/htdocs/match/node_modules/sass/sass.dart.js:8447:3)");
 
 /***/ }),
 

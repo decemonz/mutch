@@ -25,7 +25,6 @@
 
   @include mq(lg){
   top: 37%;
-
   }
   @include mq(md){
   top: 60%;
@@ -38,19 +37,41 @@
   color: white;
   margin-bottom: 10px;
   line-height: 1;
+
   @include mq(lg){
   font-size: 120px;
   }
   @include mq(md){
-  font-size: 90px;
+  font-size: 80px;
   }
 
   @include mq(sm){
-  font-size: 50px;
+  font-size: 40px;
   }
+
+  @include mq(xs){
+  font-size: 30px;
+  }
+
   }
   &__para{
     color: white;
+    font-size: 20px;
+
+    @include mq(lg){
+    font-size: 15px;
+    }
+    @include mq(md){
+    font-size: 15px;
+    }
+
+    @include mq(sm){
+    font-size: 12px;
+    }
+
+    @include mq(xs){
+    font-size:8px;
+    }
 
   }
 }

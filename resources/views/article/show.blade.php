@@ -13,7 +13,7 @@
 
       <p class="p-show__number">No.{{ $article->id}}</p>
 
-        <a id="tweet" class="tweet__btn" style="color:white;" href="https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"><i class="fab fa-twitter"></i>tweet</a>
+        <a id="tweet" class="tweet__btn" style="color:white;cursor:pointer;" onclick="window.open('https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/{{$article->id}}&text={{$article->title}}','newwindow','width=500,height=400');"><i class="fab fa-twitter"></i>tweet</a>
 
   @if($article->user_id === Auth::user()->id)
       <a href="{{ url('articleEdit',$article->id)}}">
@@ -21,8 +21,6 @@
       </a>
   @endif
 　
-
-
       <p class="p-show__title">{{ $article->title}}</p>
 
       <h1 class="p-show__label">投稿者</h1>
@@ -40,8 +38,11 @@
 
   　　 </p>
 
+      @if($article->kind === 'single')
       <h1 class="p-show__label">金額</h1>
       　 <p class="p-show__contents">{{ $article->hi_price }}円　〜　{{ $article->low_price }}円</h1>
+
+      @endif
 
     　<h1 class="p-show__label pb-3">内容</h1>
 
@@ -124,6 +125,8 @@
             </form>
           </div>
 
+      @if(count($comments) > 0)
+
       <div class="p-comment__label">コメント一覧</div>
       <div class="p-comment__container">
 
@@ -133,7 +136,7 @@
         <div class="p-comment__items">
           <p class="p-comment__name">name:{{ $comment->user_name}}</p>
           <p class="p-comment__text">{{ $comment->body }}</p>
-          <p class="p-comment__date">{{ $comment->created_at }}</p>
+          <p class="p-comment__date">{{ date('Y/m/d , H:i',strtotime($comment->created_at))}}</p>
           <form class="" action="{{url('comment_delete',$comment->id)}}" method="post">
             @csrf
             <button type="submit" class="p-comment__delete btn-primary">削除</button>
@@ -143,14 +146,14 @@
           @endforeach
 
       </div>
-
+    @endif
 
     </section>
 
   </div>
 
   <div class="back__btn">
-      <a class="" href="{{URL::previous()}}"><i class="fas fa-backward"></i> Back</a>
+      <a class="" href="{{ route('article.index')}}"><i class="fas fa-backward"></i> Back</a>
   </div>
 
 

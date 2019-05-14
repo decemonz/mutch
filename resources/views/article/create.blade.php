@@ -34,7 +34,7 @@
               <div class="c-form__group" v-if="kind === 'single'">
                 <label for="price">金額</label><br>
                 下限:
-                <input type="number" class="c-form__control-price" id="hi_price" name="hi_price" > (円)　　<br>
+                <input type="number" class="c-form__control-price"  placeholder="1000円~" id="hi_price" name="hi_price" > (円)　　<br>
                 上限:
                 <input type="number" class="c-form__control-price" id="low_price" name="low_price" > (円)
               </div>
@@ -53,7 +53,7 @@
   </div>
 
   <div class="back__btn">
-    <a class="pagi__button" href="{{URL::previous()}}"> &laquo; Back</a>
+    <a class="pagi__button" href="{{ route('article.index')}}"> &laquo; Back</a>
 
   </div>
 

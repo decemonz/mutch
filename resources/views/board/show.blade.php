@@ -14,33 +14,47 @@
 <div class="p-message">
 
 
-  <a class="p-show__contents" href="{{ route('article.show',$article->id)}}">{{ $article->title}}</a>
+  <a class="p-message__title" href="{{ route('article.show',$article->id)}}">{{ $article->title}}</a>
 
       @foreach($messages as $message)
 
       @if($message->user->name == Auth::user()->name)
 
       <div class="p-message__left">
-        <p class="p-message__left-date">{{ date('Y/m/d',strtotime($message->created_at))}}</p>
+        <p class="p-message__left-date">{{ date('Y/m/d , H:i',strtotime($message->created_at))}}</p>
         <p class="p-message__left-name">{{ $message->user->name }}</p>
         <img src="/images/{{ $message->user->image }}" alt="" class="p-message__left-image">
         <p>{{ $message->body }}</p>
+        @if($message->user_id === Auth::user()->id)
+        <form class="" action="{{url('message_delete',$message->id)}}" method="post">
+          @csrf
+          <button type="submit" class="p-comment__delete btn-primary">削除</button>
+        </form>
+        @endif
       </div>
 
 
       @else
 
       <div class="p-message__right">
-        <p class="p-message__right-date">{{ date('Y/m/d',strtotime($message->created_at)) }}</p>
+        <p class="p-message__right-date">{{ date('Y/m/d , H:i',strtotime($message->created_at)) }}</p>
         <p class="p-message__right-name">{{ $message->user->name }}</p>
         <img src="/images/{{ $message->user->image }}" alt="" class="p-message__right-image">
         <p>{{ $message->body }}</p>
+        @if($message->user_id === Auth::user()->id)
+        <form class="" action="{{url('message_delete',$message->id)}}" method="post">
+          @csrf
+          <button type="submit" class="p-comment__delete-right btn-primary">削除</button>
+        </form>
+        @endif
       </div>
 
 
       @endif
 
       @endforeach
+
+        {{ $messages->links()}}
 
   </div>
 
@@ -66,10 +80,11 @@
                     <button type="submit" name="button" class="p-small__btn btn-primary">投稿</button>
                   </div>
                 </form>
+
               </div>
 
 
-              <a class="pagi__button" href="{{URL::previous()}}"> &laquo; Back</a>
+              <a class="pagi__button" href="{{route('board.index')}}"> &laquo; Back</a>
 
     </section>
 

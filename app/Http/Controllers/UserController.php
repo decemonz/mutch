@@ -14,12 +14,6 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    // public function __construct()
-    //   {
-    //       $this->middleware('prof')
-    //           ->except(['index']);
-    //   }
-
     public function show(){
 
       $user = Auth::user();

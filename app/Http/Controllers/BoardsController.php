@@ -59,7 +59,7 @@ class BoardsController extends Controller
 
       $article = Article::findOrFail($board->article_id);
 
-      $messages = Message::where('board_id',$board->id)->get();
+      $messages = Message::where('board_id',$board->id)->simplePaginate(10);
 
       return view('board.show',compact('board','user','client','article','messages'));
 
@@ -80,4 +80,5 @@ class BoardsController extends Controller
       return view('board.index',compact('user','client_boards','apply_boards'));
 
     }
+
 }

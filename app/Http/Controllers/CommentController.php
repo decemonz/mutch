@@ -19,9 +19,6 @@ class CommentController extends Controller
 
     public function store(CommentRequest $request, $id){
 
-      $message = [ 'コメント送信されました'  ];
-      event(new \App\Events\ApplyPusher($message));
-
       $comments = Comment::create($request->validated());
       $comments->save();
       // return view('article.show',['id'=>$id]);
@@ -38,7 +35,7 @@ class CommentController extends Controller
     public function index(){
       $articles = Article::all();
       $comments = Auth::user()->comment;
-  
+
 
       return view('comment.index',compact('articles'));
 

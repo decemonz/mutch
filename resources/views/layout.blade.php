@@ -29,23 +29,22 @@
 
         <ul class="p-footer__list" id="js-logout-footer">
           @if(Auth::check())
-          <li class="p-footer__item"> <a href="{{ route('article.index')}}">案件一覧 |</a> </li>
-          <li class="p-footer__item" > <a href="" @click="logout">ログアウト |</a> </li>
+          <li class="p-footer__item"> <a href="{{ route('article.index')}}">| 案件一覧 </a> </li>
+          <li class="p-footer__item" > <a href="" @click="logout">| ログアウト</a> </li>
           <form class="" id="logout-form-footer" action="{{ route('logout')}}" method="post" style="display:none;">
             @csrf
           </form>
-          <li class="p-footer__item"> <a href="{{ route('article.create')}}">案件登録 |</a> </li>
-          <li class="p-footer__item"> <a href="{{ route('user.show')}}">マイページ</a> </li>
+          <li class="p-footer__item"> <a href="{{ route('article.create')}}">| 案件登録</a> </li>
+          <li class="p-footer__item"> <a href="{{ route('user.show')}}">|マイページ</a> </li>
 
 
           @else
-          <li class="p-footer__item"> <a href="/login">ログイン |</a> </li>
-          <li class="p-footer__item"> <a href="/register">ユーザー登録 |</a> </li>
+                    <li class="p-footer__item-guest"> <a href="/register">|ユーザー登録</a> </li>
+          <li class="p-footer__item-guest"> <a href="/login">| ログイン</a> </li>
           @endif
-          <li class="p-footer__copyright"> Copyright ©2019 LLC. All Rights Reserved.</li>
+
         </ul>
-
-
+   <p class="p-footer__copyright"> Copyright ©2019 LLC. All Rights Reserved.</p>
 
 
 

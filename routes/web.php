@@ -32,7 +32,7 @@ Route::get('/index','ArticleController@index')->name('article.index');
 Route::get('/articleEdit/{id}','ArticleController@edit')->name('article.edit');
 Route::post('/articleUpdate/{id}','ArticleController@update')->name('article.update');
 Route::get('/articles/{id}','ArticleController@show')->name('article.show');
-
+Route::post('/article_delete/{id}','ArticleController@destroy')->name('article.delete');
 
 // ajax(vueへデータを送る用)
 Route::get('/ajax/articles','Ajax\ArticlesController@index');
@@ -51,6 +51,7 @@ Route::post('/comment/{id}','CommentController@store')->name('comment.store');
 
 // message
 Route::post('/message/{id}','MessagesController@store')->name('message.store');
+Route::post('/message_delete/{id}','MessagesController@destroy')->name('message.delete');
 
 // user
 Route::get('/prof','UserController@show')->name('user.show');
@@ -63,7 +64,6 @@ Route::get('/board/index','BoardsController@index')->name('board.index');
 Route::get('/board/{id}','BoardsController@show')->name('board.show');
 Route::post('/board','BoardsController@store')->name('board.store');
 Route::get('/show_board/{id}','BoardsController@show_board')->name('show_board');
-
 
 });
 

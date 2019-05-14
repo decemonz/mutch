@@ -13,7 +13,7 @@
         </a>
 
 
-        <a id="tweet" @click="tweet"　class="tweet__btn" style="color:white;" href="https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"><i class="fab fa-twitter" style="margin-right:3px;"></i>tweet</a>
+        <a id="tweet" @click="tweet"　class="tweet__btn" target="newwindow" style="color:white;" href="https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"><i class="fab fa-twitter" style="margin-right:3px;"></i>tweet</a>
 
 
 
@@ -26,10 +26,10 @@
 
 
         <div class="p-show__contents" v-if="article.kind === 'single' ">
-            単発
+            単発案件
         </div>
-        <div 　v-else>
-            サービス開発
+        <div class="p-show__contents"　v-else>
+            レベニューシェア案件
         </div>
 
 
@@ -40,7 +40,7 @@
 
         　 <p class="p-show__contents" v-if="article.kind === 'single' ">{{ article.hi_price }}円　〜　{{ article.low_price }}円</h1>
 
-      　<h1 class="p-show__label pb-3">内容</h1>
+      　<h1 class="p-show__label">内容</h1>
 
           <p class="p-show__contents">
 
@@ -131,7 +131,8 @@
         <p class="p-comment__name">name:{{ comment.user_name}}</p>
         <p class="p-comment__text">{{ comment.body }}</p>
         <p class="p-comment__date">{{ comment.created_at }}</p>
-        <form class="" action="" method="post"  @submit.prevent="submit">
+
+        <form class="" v-if="comment.user_name === currentUser.name" action="" method="post"  @submit.prevent="submit">
            <input type="hidden" name="_token" :value="csrf">
            <input type="hidden" id="comment-id" :value="comment.id" />
           <button type="submit" @click="commentDelete" name="button" class="p-comment__delete btn-primary">削除</button>
@@ -142,7 +143,11 @@
 
     </div>
   </div>
-      <a class="pagi__button" href=""> &laquo; Back</a>
+
+  <div class="back__btn">
+      <a class="pagi__button" @click="back"> &laquo; Back</a>
+  </div>
+
 </div>
 
 </template>
@@ -196,7 +201,7 @@ export default {
       };
         axios.post(`/comment/${this.article.id}`,commentFormData)
         .then(
-         this.$router.go(`/board/${this.article.id}`)
+         this.$router.go({name:'ArticleDetail'})
         )
     },
     // コメント削除
@@ -207,8 +212,11 @@ export default {
       };
         axios.post(`/comment_delete/${commentId}`,commentDeleteData)
         .then(
-         this.$router.go()
+         this.$router.go({name:'ArticleDetail'})
         )
+    },
+    back:function(){
+       this.$router.go({name:'ArticleList'})
     },
     // 編集ページへのリンク
     articleEdit:function(){

@@ -1,7 +1,21 @@
 .p-message{
   text-align: center;
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
+  padding-left: 60px;
+  font-size: 15px;
+
+  @include mq(md){
+  width: 90%;
+  padding-left: 20px;
+
+  }
+
+  &__title{
+    text-align: center;
+    padding-right: 35px;
+  }
+
 
   &__left{
   width: 80%;
@@ -13,10 +27,15 @@
   position: relative;
   text-align: center;
 
+  @include mq(sm){
+    width:70%;
+
+  }
+
   &-name{
     font-size: 11px;
     position: absolute;
-    left: -75px;
+    left: -53px;
     top: -30px;
   }
 
@@ -50,10 +69,19 @@
     position: relative;
     text-align: center;
 
+    @include mq(sm){
+      width: 70%;
+      margin-left: 20px;
+    }
+    @include mq(xs){
+        width: 70%;
+     margin-left: 0;
+    }
+
     &-name{
       font-size: 11px;
       position: absolute;
-      right: -80px;
+      right: -50px;
       top: -30px;
     }
 

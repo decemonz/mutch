@@ -3,7 +3,7 @@
  <div id="articles">
    <div class="c-article__sort">
      <button  name="button" class="sort__btn" @click="sortSingle">単発</button>
-     <button  name="button" class="sort__btn" @click="sortRevenue">サービス開発</button>
+     <button  name="button" class="sort__btn" @click="sortRevenue">レベニュー</button>
      <button  name="button" class="sort__btn" @click="sortDefault">全件</button>
    </div>
 

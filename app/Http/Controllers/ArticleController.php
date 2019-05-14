@@ -62,5 +62,11 @@ class ArticleController extends Controller
       return view('article.show',compact('article','user','comments','boards'));
     }
 
+    public function destroy($id){
+      $article = Article::findOrFail($id);
+      $article->delete();
+      return redirect()->route('top');
+    }
+
 
 }

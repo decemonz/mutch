@@ -15,10 +15,10 @@
         金額　: {{ article.low_price}}　円　~ {{ article.hi_price}}　円
       </p>
       <p class="c-article__kind" v-if="article.kind === 'single'">
-        単発
+        単発案件
       </p>
       <p class="c-article__kind" v-else>
-        サービス開発
+        レベニューシェア案件
       </p>
 
       <div class="c-article__body">

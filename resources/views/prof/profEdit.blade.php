@@ -34,6 +34,10 @@
           </form>
         </div>
   </div>
-                <a class="pagi__button" href="{{URL::previous()}}"> &laquo; Back</a>
+
+  <div class="back__btn">
+      <a class="pagi__button" href="{{route('user.show')}}"> &laquo; Back</a>
+  </div>
+
 </div>
 @endsection

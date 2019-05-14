@@ -58,7 +58,7 @@ return [
     'image' => 'The :attribute must be an image.',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
-    'integer' => 'The :attribute must be an integer.',
+    'integer' => ':attribute は数値で入力してください',
     'ip' => 'The :attribute must be a valid IP address.',
     'ipv4' => 'The :attribute must be a valid IPv4 address.',
     'ipv6' => 'The :attribute must be a valid IPv6 address.',
@@ -84,7 +84,7 @@ return [
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => ':attribute は:min円からです.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'string' => 'The :attribute must be at least :min characters.',
         'array' => 'The :attribute must have at least :min items.',
@@ -148,6 +148,13 @@ return [
       'email' => 'メールアドレス',
       'password' => 'パスワード',
       'token' => 'トークン',
+      'body' => '本文',
+      'email' => 'メールアドレス',
+      'title' => 'タイトル',
+      'hi_price' => '上限',
+      'low_price' => '下限',
+      'name' => '名前',
+
         ],
 
 ];

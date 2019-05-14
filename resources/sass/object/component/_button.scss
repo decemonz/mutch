@@ -60,9 +60,15 @@
 }
 
 .pagi__button{
+  font-size: 15px;
   background-color: white;
   border: 1px solid silver;
   border-radius: 4px;
-  padding:  5px;
+  padding:  6px;
+  cursor: pointer;
+
+  @include mq(md){
+    font-size: 12px;
+  }
 
 }

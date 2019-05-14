@@ -10,7 +10,7 @@
 
   <div class="c-panel__container">
 
-      <p class="p-show__contents">No.{{ $user->id}}</p>
+      <p class="p-show__contents">No.{{ $user->id }}</p>
 
       <h1 class="p-show__label">ユーザー名</h1>
     　 <p class="p-show__contents">{{ $user->name }}</p>
@@ -45,13 +45,12 @@
         <p class="p-show__newlabel"> ○ {{$article->title}} </p>
         <p>{{ date('Y/m/d',strtotime($article->created_at))}}</p>
         <p class="p-show__contents">{{ str_limit($article->body,$limit = 100, $end = '...')}}</p>
-        <br>
 
       </a>
 
     @endforeach
 
-    {{ $articles->links() }}
+    {{ $articles->links()}}
 
   </div>
 
@@ -110,6 +109,10 @@
 <a class="p-show__label" href="{{ route('board.index')}}"> ダイレクトメッセージ一覧</a>
 
 
+  </div>
+
+  <div class="back__btn">
+      <a class="pagi__button" href="{{route('top')}}"> &laquo; Back</a>
   </div>
 
 
