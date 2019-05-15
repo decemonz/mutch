@@ -349,6 +349,12 @@ a:visited {
   float: right;
 }
 
+@media screen and (max-width:550px) {
+  .p-small__btn {
+    font-size: 10px;
+  }
+}
+
 .p-small__btn:hover {
   background-color: rgba(230, 230, 230, 0.6);
   color: black;
@@ -631,6 +637,12 @@ a:visited {
   position: relative;
 }
 
+@media screen and (max-width:320px) {
+  .p-comment__items {
+    margin: 30px 20px 20px 0;
+  }
+}
+
 .p-comment__name {
   position: absolute;
   left: 10px;
@@ -719,10 +731,10 @@ a:visited {
   text-align: center;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:550px) {
   .p-message__right {
     width: 70%;
-    margin-left: 0px;
+    margin-left: 20px;
   }
 }
 
@@ -849,30 +861,16 @@ a:visited {
 
 .p-footer {
   margin-top: 50px;
-  height: 60px;
+  min-height: 60px;
+  height: auto;
   background-color: #F5F5F5;
-  padding: 40px 30px 20px;
+  padding: 40px 30px 20px 50px;
 }
 
 .p-footer__list {
   width: auto;
   float: right;
   font-size: 15px;
-  margin: 0 auto;
-}
-
-@media screen and (max-width:768px) {
-  .p-footer__list {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width:320px) {
-  .p-footer__list {
-    width: 100%;
-    margin: 0 auto;
-    font-size: 6px;
-  }
 }
 
 .p-footer__item {
@@ -880,6 +878,12 @@ a:visited {
   letter-spacing: 5px;
   padding-left: 5px;
   padding-bottom: 10px;
+}
+
+@media screen and (max-width:768px) {
+  .p-footer__item {
+    font-size: 8px;
+  }
 }
 
 .p-footer__item-guest {
@@ -897,7 +901,7 @@ a:visited {
 @media screen and (max-width:550px) {
   .p-footer__copyright {
     text-align: center;
-    padding: 40px 10px;
+    padding-right: 30px;
   }
 }
 
