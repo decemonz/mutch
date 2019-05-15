@@ -16,7 +16,7 @@
     　 <p class="p-show__contents">{{ $user->name }}</p>
 
       <div class="p-show__image">
-        <img src="/images/{{ $user->image }}" alt="">
+        <img class="prof__image" src="https://s3-ap-northeast-1.amazonaws.com/match-test01/{{ $user->image }}" alt="">
       </div>
 
     　<h1 class="p-show__label pb-3">自己紹介</h1>

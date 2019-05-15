@@ -8,6 +8,9 @@ use App\Article;
 use App\Comment;
 use App\Board;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 use Illuminate\Http\Request;
 
@@ -38,8 +41,10 @@ class UserController extends Controller
    public function update(UserRequest $request){
 
     $file = $request->file('image');
-    $fileName=str_random(20).'.'.$file->getClientOriginalExtension();
-    Image::make($file)->resize(200,200)->save(public_path('images/'.$fileName));
+    $fileName = str_random(20).'.'.$file->getClientOriginalExtension();
+    // Image::make($file)->resize(200,200)->save(public_path('images/'.$fileName));
+    Storage::cloud()->putFileAs('', $file, $fileName, 'public');
+
 
     // $user = Auth::user()->id;
     // User::findOrFail($user)
