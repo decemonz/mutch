@@ -47,7 +47,7 @@ class UserController extends Controller
     $fileName = str_random(20).'.'.$file->getClientOriginalExtension();
     // Image::make($file)->resize(200,200)->save(public_path('images/'.$fileName));
     // S3に画像をアップロード
-    // Storage::cloud()->putFileAs('', $file, $fileName, 'public');
+    Storage::cloud()->putFileAs('', $file, $fileName, 'public');
 
     Auth::user()->update($request->validated());
     Auth::user()->image = $fileName;
