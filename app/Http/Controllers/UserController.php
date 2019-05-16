@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+  // マイページ
     public function show(){
 
       $user = Auth::user();
@@ -29,25 +30,25 @@ class UserController extends Controller
       // 応募中案件ボード取得(自分が応募している案件一覧)
       $apply_boards = Board::where('user_id',$user_id)->get();
 
-
       return view('prof.show',compact('user','articles','client_boards','apply_boards'));
     }
 
+// プロフィール編集
     public function edit(){
       $user = Auth::user();
       return view('prof.profEdit',compact('user'));
     }
 
+// プロフィール更新
    public function update(UserRequest $request){
 
     $file = $request->file('image');
+    // ファイル名を作成
     $fileName = str_random(20).'.'.$file->getClientOriginalExtension();
     // Image::make($file)->resize(200,200)->save(public_path('images/'.$fileName));
-    Storage::cloud()->putFileAs('', $file, $fileName, 'public');
+    // S3に画像をアップロード
+    // Storage::cloud()->putFileAs('', $file, $fileName, 'public');
 
-
-    // $user = Auth::user()->id;
-    // User::findOrFail($user)
     Auth::user()->update($request->validated());
     Auth::user()->image = $fileName;
     Auth::user()->save();

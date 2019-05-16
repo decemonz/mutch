@@ -11,19 +11,21 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
 
+  // ログインユーザー以外がアクセスできないよう制御
     public function __construct()
       {
           $this->middleware('comment')
               ->except(['store', 'index']);
       }
 
+// コメント作成
     public function store(CommentRequest $request, $id){
 
       $comments = Comment::create($request->validated());
       $comments->save();
-      // return view('article.show',['id'=>$id]);
       return redirect()->route('article.show',$id);
     }
+
 // コメント削除
     public function destroy($id){
       $comment = Comment::findOrFail($id);
@@ -32,11 +34,10 @@ class CommentController extends Controller
       return redirect()->route('article.show',$article->id);
     }
 
+// コメント一覧
     public function index(){
       $articles = Article::all();
       $comments = Auth::user()->comment;
-
-
       return view('comment.index',compact('articles'));
 
     }

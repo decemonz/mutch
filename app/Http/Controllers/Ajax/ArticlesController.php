@@ -9,6 +9,8 @@ use App\User;
 use App\Board;
 use Illuminate\Support\Facades\Auth;
 
+// jsonをvueに送るためのコントローラー
+
 class ArticlesController extends Controller
 {
   public function index(){
