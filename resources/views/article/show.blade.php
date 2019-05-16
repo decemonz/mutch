@@ -13,7 +13,7 @@
 
       <p class="p-show__number">No.{{ $article->id}}</p>
 
-        <a id="tweet" class="tweet__btn" style="color:white;cursor:pointer;" onclick="window.open('https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/{{$article->id}}&text={{$article->title}}','newwindow','width=500,height=400');"><i class="fab fa-twitter"></i>tweet</a>
+        <a id="tweet" class="tweet__btn" style="color:white;cursor:pointer;" onclick="window.open('https://twitter.com/intent/tweet?url=http://https://stark-headland-31167.herokuapp.com/articles/{{$article->id}}&text={{$article->title}}','newwindow','width=500,height=400');"><i class="fab fa-twitter"></i>tweet</a>
 
   @if($article->user_id === Auth::user()->id)
       <a href="{{ url('articleEdit',$article->id)}}">
@@ -153,7 +153,7 @@
   </div>
 
   <div class="back__btn">
-      <a class="" href="{{ route('article.index')}}"><i class="fas fa-backward"></i> Back</a>
+      <a class="pagi__button" href="{{ route('article.index')}}"><i class="fas fa-backward"></i> Back</a>
   </div>
 
 

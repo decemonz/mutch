@@ -26,6 +26,9 @@
       @include mq(md){
         font-size: 12px;
       }
+      @include mq(sm){
+        font-size: 8px;
+      }
 
 
       &-guest{
@@ -45,7 +48,7 @@
     padding-top: 40px;
 
 
-    @include mq(sm){
+    @include mq(xs){
       text-align: center;
      padding-right: 30px;
 

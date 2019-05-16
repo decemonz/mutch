@@ -13201,7 +13201,7 @@ var render = function() {
             id: "tweet",
             target: "newwindow",
             href:
-              "https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"
+              "https://twitter.com/intent/tweet?url=https://stark-headland-31167.herokuapp.com/index/articles/"
           },
           on: { click: _vm.tweet }
         },

@@ -13,7 +13,7 @@
         </a>
 
 
-        <a id="tweet" @click="tweet"　class="tweet__btn" target="newwindow" style="color:white;" href="https://twitter.com/intent/tweet?url=http://localhost.8888/index/articles/"><i class="fab fa-twitter" style="margin-right:3px;"></i>tweet</a>
+        <a id="tweet" @click="tweet"　class="tweet__btn" target="newwindow" style="color:white;" href="https://twitter.com/intent/tweet?url=https://stark-headland-31167.herokuapp.com/index/articles/"><i class="fab fa-twitter" style="margin-right:3px;"></i>tweet</a>
 
 
 
