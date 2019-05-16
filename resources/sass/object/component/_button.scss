@@ -54,6 +54,7 @@
 }
 
 .tweet__btn{
+  display: inline;
   color:white;
   margin-left: 20px;
   line-height: 12px;
@@ -70,6 +71,7 @@
   border-radius: 4px;
   padding:  6px;
   cursor: pointer;
+  display: inline;
 
   @include mq(md){
     font-size: 12px;

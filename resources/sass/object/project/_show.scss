@@ -20,17 +20,23 @@
 
   &__label{
     font-weight: bold;
+    margin-top: 20px;
   }
 
   &__newlabel{
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-bottom: 1.3px solid #DDD;
     padding: 10px;
+    color: #0268cc;
   }
 
+  &__container{
+    margin: 25px 0;
+    padding: 0;
+  }
   &__contents{
-    margin: 10px 0;
+    margin: 0;
     padding: 0 10px;
   }
 

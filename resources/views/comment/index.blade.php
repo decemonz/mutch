@@ -70,6 +70,7 @@
 
     @endforeach
 
+
  </div>
  <div class="back__btn">
      <a class="pagi__button" href="{{ route('user.show')}}"> &laquo; Back</a>

@@ -43,6 +43,7 @@ table {
 }
 a{
 	text-decoration: none;
+	display: block;
 	&:hover{
 		opacity: 0.7;
 	}

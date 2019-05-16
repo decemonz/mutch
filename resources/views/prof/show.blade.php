@@ -40,7 +40,7 @@
 
     @foreach($articles as $article)
 
-      <a class="p-show__contents" href="{{ url('articles',$article->id)}}">
+      <a class="p-show__container" href="{{ url('articles',$article->id)}}">
 
         <p class="p-show__newlabel"> ○ {{$article->title}} </p>
         <p>{{ date('Y/m/d',strtotime($article->created_at))}}</p>
@@ -104,8 +104,8 @@
 
 @endif -->
 
+
 <a class="p-show__label" href="{{ route('comment.index')}}"> コメント一覧</a>
-<br>
 <a class="p-show__label" href="{{ route('board.index')}}"> ダイレクトメッセージ一覧</a>
 
 
