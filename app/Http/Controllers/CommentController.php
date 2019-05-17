@@ -36,7 +36,7 @@ class CommentController extends Controller
 
 // コメント一覧
     public function index(){
-      $articles = Article::all();
+      $articles = Article::paginate(2);
       $comments = Auth::user()->comment;
       return view('comment.index',compact('articles'));
 

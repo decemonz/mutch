@@ -23,7 +23,7 @@
       <div class="p-message__left">
         <p class="p-message__left-date">{{ date('Y/m/d , H:i',strtotime($message->created_at))}}</p>
         <p class="p-message__left-name">{{ $message->user->name }}</p>
-        <img src="https://s3-ap-northeast-1.amazonaws.com/match-test01/{{ $message->user->image }}" alt="" class="p-message__left-image">
+        <img src="https://s3-ap-northeast-1.amazonaws.com/match-test01/{{ $message->user->image }}" alt="image" class="p-message__left-image">
         <p>{{ $message->body }}</p>
         @if($message->user_id === Auth::user()->id)
         <form class="" action="{{url('message_delete',$message->id)}}" method="post">
@@ -39,7 +39,7 @@
       <div class="p-message__right">
         <p class="p-message__right-date">{{ date('Y/m/d , H:i',strtotime($message->created_at)) }}</p>
         <p class="p-message__right-name">{{ $message->user->name }}</p>
-        <img src="https://s3-ap-northeast-1.amazonaws.com/match-test01/{{ $message->user->image }}" class="p-message__right-image">
+        <img src="https://s3-ap-northeast-1.amazonaws.com/match-test01/{{ $message->user->image }}" alt="image" class="p-message__right-image">
         <p>{{ $message->body }}</p>
         @if($message->user_id === Auth::user()->id)
         <form class="" action="{{url('message_delete',$message->id)}}" method="post">

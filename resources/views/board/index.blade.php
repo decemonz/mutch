@@ -43,6 +43,8 @@
 
     @endforeach
 
+    {{ $client_boards->links()}}
+
   @endif
 
   </div>
@@ -72,6 +74,9 @@
       </div>
 
       @endforeach
+
+        {{ $apply_boards->links()}}
+
 
       @endif
 

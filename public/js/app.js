@@ -1826,84 +1826,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       required: true
     }
-  } //   data(){
-  //     return{
-  //       kind:'single',
-  //       article:{},
-  //       user:{},
-  //       comments:{},
-  //       boards:{},
-  //       currentUser:'',
-  //       applyed:true,
-  //       csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-  //       commentBody:'',
-  //     }
-  //   },
-  //   methods:{
-  //     // ボード情報送信
-  //     boardSubmit:function(){
-  //       var boardFormData ={
-  //         article_id:this.article.id,
-  //         client_id:this.article.user_id,
-  //         article_title:this.article.title,
-  //         user_id:this.currentUser.id,
-  //         _token:this.csrf,
-  //       };
-  //       axios.post('/board',boardFormData)
-  //       .then(
-  //        this.$router.go(`/board/${this.article.id}`)
-  //       )
-  //     },
-  //     commentSubmit:function(){
-  //       var commentFormData ={
-  //         body:this.commentBody,
-  //         user_name:this.currentUser.name,
-  //         article_id:this.article.id,
-  //         _token:this.csrf,
-  //       };
-  //         axios.post(`/comment/${this.article.id}`,commentFormData)
-  //         .then(
-  //          this.$router.go({name:'ArticleDetail'})
-  //         )
-  //     },
-  //     commentDelete:function(){
-  //       var commentId = document.getElementById('comment-id').value;
-  //       var commentDeleteData ={
-  //         _token:this.csrf,
-  //       };
-  //         axios.post(`/comment_delete/${commentId}`,commentDeleteData)
-  //         .then(
-  //          this.$router.go({name:'ArticleDetail'})
-  //         )
-  //     },
-  //     articleEdit:function(){
-  //       this.$router.push(`/articleEdit/${this.article.id}`)
-  //     },
-  //   },
-  //   mounted(){
-  //    var self = this;
-  //    var url = `/ajax/articles/${this.id}`
-  //     axios.get(url).then(function(response){
-  //      self.article = response.data
-  //    });
-  //    var url = `/ajax/user/${this.id}`
-  //    axios.get(url).then(function(response){
-  //     self.user = response.data
-  //   });
-  //   var url = `/ajax/comments/${this.id}`
-  //    axios.get(url).then(function(response){
-  //     self.comments = response.data
-  //   });
-  //   var url = `/ajax/boards/${this.id}`
-  //    axios.get(url).then(function(response){
-  //     self.boards = response.data
-  //   });
-  //   var url = `/ajax/currentUser/${this.id}`
-  //    axios.get(url).then(function(response){
-  //     self.currentUser = response.data
-  //   });
-  // },
-
+  }
 });
 
 /***/ }),
@@ -2309,15 +2232,13 @@ __webpack_require__.r(__webpack_exports__);
       this.sort = '';
     }
   },
-  mounted: function mounted() {
-    this.$nextTick(function () {
-      var self = this;
-      var url = "/ajax/articles/?page=".concat(self.page);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
-        self.articles = response.data.data;
-        self.currentPage = response.data.current_page;
-        self.lastPage = response.data.last_page;
-      });
+  created: function created() {
+    var self = this;
+    var url = "/ajax/articles/?page=".concat(self.page);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
+      self.articles = response.data.data;
+      self.currentPage = response.data.current_page;
+      self.lastPage = response.data.last_page;
     });
   },
   updated: function updated() {
@@ -13064,7 +12985,7 @@ var render = function() {
     { staticClass: "c-panel__container" },
     [
       _c("p", { staticClass: "c-article__id" }, [
-        _vm._v("No." + _vm._s(_vm.article.id) + " ")
+        _vm._v("投稿日時 :" + _vm._s(_vm.article.created_at) + " ")
       ]),
       _vm._v(" "),
       _c("RouterLink", { attrs: { to: "/index/articles/" + _vm.article.id } }, [
@@ -13092,9 +13013,10 @@ var render = function() {
               _vm._v("\n      レベニューシェア案件\n    ")
             ]),
         _vm._v(" "),
-        _c("div", { staticClass: "c-article__body" }, [
-          _vm._v("\n      " + _vm._s(_vm.article.body) + "\n    ")
-        ])
+        _c("div", {
+          staticClass: "c-article__body",
+          domProps: { textContent: _vm._s(_vm.article.body) }
+        })
       ])
     ],
     1
@@ -13526,7 +13448,7 @@ var render = function() {
             attrs: { name: "button" },
             on: { click: _vm.sortRevenue }
           },
-          [_vm._v("レベニュー")]
+          [_vm._v("レベニューシェア")]
         ),
         _vm._v(" "),
         _c(
@@ -28494,8 +28416,8 @@ __webpack_require__.r(__webpack_exports__);
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "8f531320589dac674c15",
-  cluster: "ap3",
+  key: "",
+  cluster: "",
   encrypted: true
 });
 

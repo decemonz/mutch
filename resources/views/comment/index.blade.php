@@ -47,7 +47,7 @@
         <!-- 自分の投稿したコメントかどうかを判定 -->
           @if($comment->user_name === Auth::user()->name)
 
-        <div  class="p-comment__items">
+        <div  class="p-comment__items-index">
 
           <p class="p-comment__name">name:{{ $comment->user_name}}</p>
           <p class="p-comment__text">{{ $comment->body }}</p>
@@ -70,6 +70,9 @@
 
     @endforeach
 
+<div class="c-pagination">
+  {{ $articles->links()}}
+</div>
 
  </div>
  <div class="back__btn">
