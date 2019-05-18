@@ -101,7 +101,7 @@
             <div class="alert alert-danger">
 
               @foreach($errors->all() as $message)
-               <p>{{ $message }}</p>
+               <p　class="error">{{ $message }}</p>
               @endforeach
 
             </div>
@@ -137,11 +137,12 @@
           <p class="p-comment__name">name:{{ $comment->user_name}}</p>
           <p class="p-comment__text">{{ $comment->body }}</p>
           <p class="p-comment__date">{{ date('Y/m/d , H:i',strtotime($comment->created_at))}}</p>
+          @if($comment->user_name === Auth::user()->name)
           <form class="" action="{{url('comment_delete',$comment->id)}}" method="post">
             @csrf
             <button type="submit" class="p-comment__delete btn-primary">削除</button>
           </form>
-
+          @endif
         </div>
           @endforeach
 

@@ -52,7 +52,7 @@ class UserController extends Controller
     Auth::user()->update($request->validated());
     Auth::user()->image = $fileName;
     Auth::user()->save();
-    return redirect()->route('top');
+    return redirect()->route('user.show');
 
    }
 }

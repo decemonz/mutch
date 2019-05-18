@@ -21,6 +21,7 @@ class Article extends Model
       public function comments(){
       return $this->hasMany('App\Comment');
 }
+      // ボードとのリレーション
       public function boards(){
       return $this->hasMany('App\Board');
 }

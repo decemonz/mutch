@@ -2,7 +2,7 @@
 
   <div  class="c-panel__container">
 
-    <p class="c-article__id">投稿日時 :{{ article.created_at }} </p>
+    <p class="c-article__id">投稿日時 : {{ article.created_at | moment }} </p>
 
     <RouterLink
 
@@ -31,11 +31,20 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
+
 export default {
   props:{
+    // 親コンポーネントからarticeデータを受け取り
     article:{
       type:Object,
       required:true
+    }
+  },
+  // 日付データをフォーマットする用
+  filters:{
+    moment: function(date){
+      return moment(date).format('YYYY/MM/DD HH:mm');
     }
   },
 

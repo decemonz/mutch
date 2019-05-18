@@ -12,7 +12,7 @@
           <button class="p-small__btn p-show__edit" @click="articleEdit">編集</button>
         </a>
 
-
+        <!-- ツイッターシェアリンク -->
         <a id="tweet" @click="tweet"　class="tweet__btn" target="newwindow" style="color:white;" href="https://twitter.com/intent/tweet?url=https://stark-headland-31167.herokuapp.com/index/articles/"><i class="fab fa-twitter" style="margin-right:3px;"></i>tweet</a>
 
 
@@ -130,8 +130,9 @@
         <p class="p-comment__name" style=""></p>
         <p class="p-comment__name">name:{{ comment.user_name}}</p>
         <p class="p-comment__text">{{ comment.body }}</p>
-        <p class="p-comment__date">{{ comment.created_at }}</p>
+        <p class="p-comment__date">{{ comment.created_at | moment }}</p>
 
+        <!-- ログインユーザーが作成したコメントの場合のみ削除ボタンを表示 -->
         <form class="" v-if="comment.user_name === currentUser.name" action="" method="post"  @submit.prevent="submit">
            <input type="hidden" name="_token" :value="csrf">
            <input type="hidden" id="comment-id" :value="comment.id" />
@@ -154,11 +155,18 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 export default {
   props:{
     id:{
       rype:String,
       required:true
+    }
+  },
+  // 日付データフォーマット用
+  filters:{
+    moment: function(date){
+      return moment(date).format('YYYY/MM/DD HH:mm');
     }
   },
   data(){
@@ -173,6 +181,7 @@ export default {
       applyed:true,
       // headのmetaタグに記載しているcsrfトークンの値をjsで取得
       csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      // コメント本文submit用変数
       commentBody:'',
     }
   },
@@ -215,8 +224,9 @@ export default {
          this.$router.go({name:'ArticleDetail'})
         )
     },
+    // 一覧画面遷移用
     back:function(){
-       this.$router.go({name:'ArticleList'})
+       this.$router.push(`/index`)
     },
     // 編集ページへのリンク
     articleEdit:function(){
@@ -227,7 +237,7 @@ export default {
       document.getElementById('tweet').href+=this.article.id+"&text="+this.article.title;
     },
   },
-  // laravelよりajaxで送ったデータを変数に格納
+  // laravelからajaxで受け取ったデータを変数に格納
    mounted(){
     var self = this;
     var url = `/ajax/articles/${this.id}`

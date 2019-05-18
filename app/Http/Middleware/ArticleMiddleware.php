@@ -20,8 +20,8 @@ class ArticleMiddleware
       $id = $request->route()->parameter('id');
       $article = Article::findOrFail($id);
       $user = Auth::user();
+      // ユーザーidとarticleIDが一致しない場合topに遷移する
       if($user->id !== $article->user_id){
-
         return redirect()->route('top');
       }
       return $next($request);

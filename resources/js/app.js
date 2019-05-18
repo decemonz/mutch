@@ -1,6 +1,5 @@
 
 import Vue from 'vue'
-import './bootstrap'
 import router from './router'
 import App from './App.vue'
 import axios from 'axios';
@@ -16,14 +15,12 @@ new Vue({
     data:{
       articles:{}
     },
-
-
 })
 
 
 // 案件種別選択用
 new Vue({
-  el:'#kind',
+  el:'#js-kind',
   data:{
     kind:'single'
   },
@@ -54,3 +51,13 @@ new Vue({
     },
   },
 })
+
+function confirm(){
+	if(window.confirm('削除してよろしいですか？')){ // 確認ダイアログを表示
+		return true; // 「OK」時は送信を実行
+	}
+	else{ // 「キャンセル」時の処理
+		window.alert('キャンセルされました'); // 警告ダイアログを表示
+		return false; // 送信を中止
+	}
+}

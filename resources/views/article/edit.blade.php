@@ -18,10 +18,10 @@
             @csrf
             <div class="c-form__group">
               <label for="title">タイトル</label>
-              <input type="text" class="c-form__control" id="title" name="title" value="{{ $article->title}}" />
+              <input type="text" class="c-form__control" name="title" value="{{ $article->title}}" />
             </div>
 
-            <div id="kind">
+            <div id="js-kind">
 
             <div class="c-form__group">
               <label for="name">案件種別</label>
@@ -44,14 +44,14 @@
               <textarea name="body" rows="8" cols="80" class="c-form__area" >{{ $article->body}}</textarea>
             </div>
             <div class="text-right">
-              <button type="submit" name="button" class="c-btn btn-primary">送信</button>
+              <button type="submit" name="button" class="c-btn btn-primary">更新</button>
             </div>
           </form>
 
-          <div class="text-right">
-            <form class="" action="{{ url('article_delete',$article->id)}}" method="post">
+          <div class="text-right" id="js-confirm">
+            <form class="" action="{{ url('article_delete',$article->id)}}" method="post" onSubmit="return confirm()">
               @csrf
-                <button type="submit" name="button" class="c-btn">記事削除</button>
+                <button type="submit" name="button" class="c-btn"　>記事削除</button>
             </form>
 
           </div>

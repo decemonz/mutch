@@ -2,6 +2,7 @@
 
  <div id="articles">
    <div class="c-article__sort">
+     <!-- ソートボタン -->
      <button  name="button" class="sort__btn" @click="sortSingle">単発</button>
      <button  name="button" class="sort__btn" @click="sortRevenue">レベニューシェア</button>
      <button  name="button" class="sort__btn" @click="sortDefault">全件</button>
@@ -21,7 +22,7 @@
         v-if="article.kind !== sort"
 
      />
-
+<!-- ページネーション -->
 <Pagination :current-page="currentPage" :last-page="lastPage" />
 
  </div>
@@ -67,7 +68,6 @@ export default {
     },
   },
   created(){
-
       var self = this;
       var url = `/ajax/articles/?page=${self.page}`
       axios.get(url).then(function(response){
@@ -75,7 +75,6 @@ export default {
         self.currentPage = response.data.current_page
         self.lastPage = response.data.last_page
       });
-
   },
   updated(){
     var self = this;

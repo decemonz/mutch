@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ArticleList from './pages/ArticleList.vue'
 import ArticleDetail from './pages/ArticleDetail.vue'
-import Notice from './pages/notice.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +9,7 @@ const routes = [
   {
     path: '/index',
     component:ArticleList,
+    // ページデータを受け取って表示するページを切り替え
     props: route => {
       const page = route.query.page
       return {
@@ -23,21 +23,12 @@ const routes = [
     component:ArticleDetail,
     props:true
   },
-  {
-    path: '/index/articles/:id',
-    component:ArticleDetail,
-    props:true
-  },
-  {
-    path: '/index/notices',
-    component:Notice,
-    props:true
-  },
 ]
 
 const router = new VueRouter({
   mode:'history',
-  scrollBehaver(){
+  // ページ切り替えした際にトップへ戻るよう指定
+  scrollBehavior(){
     return{ x:0,y:0}
   },
   routes

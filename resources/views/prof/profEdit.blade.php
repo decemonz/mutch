@@ -18,11 +18,11 @@
             @csrf
             <div class="c-form__group">
               <label for="email">メールアドレス</label>
-              <input type="text" class="c-form__control" id="email" name="email" value="{{ $user->email}}" />
+              <input type="text" class="c-form__control" name="email" value="{{ $user->email}}" />
             </div>
             <div class="c-form__group">
               <label for="image">プロフィール画像</label>
-              <input type="file" class="c-form__control" id="image" name="image" value="{{ $user->image}}" />
+              <input type="file" class="c-form__control" name="image" value="{{ $user->image}}" />
             </div>
             <div class="c-form__group">
               <label for="body">自己紹介</label>
