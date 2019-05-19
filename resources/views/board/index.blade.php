@@ -65,8 +65,8 @@
             {{ $apply_board->article_title}}
           </div>
 
-          投稿者 :<p style="display:none;">{{$id = $apply_board->client_id}}</p>
-          {{ App\User::find($id)->name}}様
+         <span class="p-show__contents">  投稿者 :<p style="display:none;">{{$id = $apply_board->client_id}}</p>
+          {{ App\User::find($id)->name}}様</span>
 
         </a>
         <br>

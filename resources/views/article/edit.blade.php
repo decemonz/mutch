@@ -49,7 +49,7 @@
           </form>
 
           <div class="text-right" id="js-confirm">
-            <form class="" action="{{ url('article_delete',$article->id)}}" method="post" onSubmit="return confirm()">
+            <form class="" action="{{ url('article_delete',$article->id)}}" method="post" onSubmit="return confirm('記事を削除してよろしいですか？')">
               @csrf
                 <button type="submit" name="button" class="c-btn"　>記事削除</button>
             </form>

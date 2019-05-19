@@ -197,7 +197,7 @@ export default {
       };
       axios.post('/board',boardFormData)
       .then(
-       this.$router.go(`/board/${this.article.id}`)
+       this.$router.go(`/show_board/${this.article.id}`)
       )
     },
     // コメント投稿

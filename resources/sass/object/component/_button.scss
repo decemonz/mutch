@@ -41,6 +41,41 @@
     color: rgb(70,70,70);
     border-radius: 5px;
     font-size: 10px;
+
+    &:hover{
+      background-color: rgba(230,230,230,0.6);
+      color: black;
+      cursor: pointer;
+    }
+}
+.rev__btn{
+    margin-right: 10px;
+    float: right;
+    width: 10%;
+    height: 40px;
+    color: rgb(70,70,70);
+    border-radius: 5px;
+    font-size: 10px;
+    display: inherit;
+    @include mq(md){
+      display: none;
+    }
+
+    &-md{
+      margin-right: 10px;
+      float: right;
+      width: 10%;
+      height: 40px;
+      color: rgb(70,70,70);
+      border-radius: 5px;
+      font-size: 10px;
+      display: none;
+
+      @include mq(md){
+        display: block;
+      }
+    }
+
     &:hover{
       background-color: rgba(230,230,230,0.6);
       color: black;

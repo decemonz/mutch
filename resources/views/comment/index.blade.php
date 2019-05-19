@@ -71,7 +71,7 @@
     @endforeach
 
 <div class="c-pagination">
-  {{ $articles->links()}}
+
 </div>
 
  </div>

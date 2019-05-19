@@ -154,7 +154,7 @@
   </div>
 
   <div class="back__btn">
-      <a class="pagi__button" href="{{ route('article.index')}}"><i class="fas fa-backward"></i> Back</a>
+      <a class="pagi__button" href="{{ route('article.index')}}"> &laquo; Back</a>
   </div>
 
 

@@ -4,7 +4,8 @@
    <div class="c-article__sort">
      <!-- ソートボタン -->
      <button  name="button" class="sort__btn" @click="sortSingle">単発</button>
-     <button  name="button" class="sort__btn" @click="sortRevenue">レベニューシェア</button>
+     <button  name="button" class="rev__btn" @click="sortRevenue">レベニューシェア</button>
+     <button  name="button" class="rev__btn-md" @click="sortRevenue">レベ</button>
      <button  name="button" class="sort__btn" @click="sortDefault">全件</button>
    </div>
 

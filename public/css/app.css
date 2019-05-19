@@ -382,6 +382,46 @@ a:visited {
   cursor: pointer;
 }
 
+.rev__btn {
+  margin-right: 10px;
+  float: right;
+  width: 10%;
+  height: 40px;
+  color: #464646;
+  border-radius: 5px;
+  font-size: 10px;
+  display: inherit;
+}
+
+@media screen and (max-width:768px) {
+  .rev__btn {
+    display: none;
+  }
+}
+
+.rev__btn-md {
+  margin-right: 10px;
+  float: right;
+  width: 10%;
+  height: 40px;
+  color: #464646;
+  border-radius: 5px;
+  font-size: 10px;
+  display: none;
+}
+
+@media screen and (max-width:768px) {
+  .rev__btn-md {
+    display: block;
+  }
+}
+
+.rev__btn:hover {
+  background-color: rgba(230, 230, 230, 0.6);
+  color: black;
+  cursor: pointer;
+}
+
 .back__btn {
   margin-top: 25px;
   margin-left: 10px;

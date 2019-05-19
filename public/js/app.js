@@ -2108,7 +2108,7 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.currentUser.id,
         _token: this.csrf
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/board', boardFormData).then(this.$router.go("/board/".concat(this.article.id)));
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/board', boardFormData).then(this.$router.go("/show_board/".concat(this.article.id)));
     },
     // コメント投稿
     commentSubmit: function commentSubmit() {
@@ -2186,6 +2186,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Pagination.vue */ "./resources/js/components/Pagination.vue");
 /* harmony import */ var _components_Article_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Article.vue */ "./resources/js/components/Article.vue");
+//
 //
 //
 //
@@ -20885,11 +20886,21 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "sort__btn",
+            staticClass: "rev__btn",
             attrs: { name: "button" },
             on: { click: _vm.sortRevenue }
           },
           [_vm._v("レベニューシェア")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "rev__btn-md",
+            attrs: { name: "button" },
+            on: { click: _vm.sortRevenue }
+          },
+          [_vm._v("レベ")]
         ),
         _vm._v(" "),
         _c(
