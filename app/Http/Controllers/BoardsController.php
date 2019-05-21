@@ -50,6 +50,8 @@ class BoardsController extends Controller
 
       $messages = Message::where('board_id',$board->id)->simplePaginate(10);
 
+            Mail::to($user->email)->send(new BoardMail($board));
+
       return view('board.show',compact('board','user','client','article','messages'));
     }
 
@@ -65,6 +67,8 @@ class BoardsController extends Controller
       $article = Article::findOrFail($board->article_id);
 
       $messages = Message::where('board_id',$board->id)->simplePaginate(10);
+
+        Mail::to($user->email)->send(new BoardMail($board));
 
       return view('board.show',compact('board','user','client','article','messages'));
 
