@@ -30,13 +30,8 @@ class BoardsController extends Controller
       $user = User::find($board->user_id);
 
 // 応募ボタンを押されて、ボードが作成された時に、記事投稿者通知メールを送る
-      // Mail::to($user->email)->send(new BoardMail($board));
-      Mail::send('mail.board',["message" => "こんにちわ"],function($message){
-        $messages
-        ->to('375967qq@gmail.com')
-        ->bcc('match@samile.com')
-        ->subject('テスト');
-      });
+      Mail::to($user->email)->send(new BoardMail($board));
+
 
       return redirect()->route('board.show',$board->article_id);
     }

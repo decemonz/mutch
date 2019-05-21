@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Mail\ResetPassword;
+use App\Mail\BoardMail;
 use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
@@ -57,6 +58,6 @@ class User extends Authenticatable
     // パスワード再設定メールを送信する
     public function sendPasswordResetNotification($token)
     {
-      Mail::to($this)->send();
+      Mail::to($this)->send(new BoardMail($token));
     }
 }

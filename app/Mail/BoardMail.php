@@ -7,12 +7,10 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-use Sichikawa\LaravelSendgridDriver\SendGrid;
 
 class BoardMail extends Mailable
 {
     use Queueable, SerializesModels;
-    use SendGrid;
 
 
     /**
@@ -23,7 +21,7 @@ class BoardMail extends Mailable
 
      private $board;
 
-    public function __construct($board ='テスト')
+    public function __construct($board)
     {
         //
         $this->board = $board;
