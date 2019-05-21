@@ -13,7 +13,7 @@ class BoardMail extends Mailable
 {
     use Queueable, SerializesModels;
     use SendGrid;
-    
+
 
     /**
      * Create a new message instance.

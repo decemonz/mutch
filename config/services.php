@@ -43,6 +43,9 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'sendgrid' => [
+   'api_key' => env('SENDGRID_API_KEY'),
+],
 //     "twitter" => [
 //     "client_id" => env("ssmZkhfGE4YvkoBTy56m8TWIG"),
 //     "client_secret" => env("EFcjQ5VxXMhZ1tpBzvPsrzL5D2eMYhwP20q5d1cNSVsd0MNvph"),
