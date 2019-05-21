@@ -13,12 +13,14 @@
 
       <p class="p-show__number">No.{{ $article->id}}</p>
 
-        <a id="tweet" class="tweet__btn" style="color:white;cursor:pointer;" onclick="window.open('https://twitter.com/intent/tweet?url=http://https://stark-headland-31167.herokuapp.com/articles/{{$article->id}}&text={{$article->title}}','newwindow','width=500,height=400');"><i class="fab fa-twitter"></i>tweet</a>
+        <a id="tweet" class="tweet__btn" style="color:white;cursor:pointer;" onclick="window.open('https://twitter.com/intent/tweet?url=https://stark-headland-31167.herokuapp.com/articles/{{$article->id}}&text={{$article->title}}','newwindow','width=500,height=400');"><i class="fab fa-twitter"></i>tweet</a>
 
   @if($article->user_id === Auth::user()->id)
+
       <a href="{{ url('articleEdit',$article->id)}}">
         <button class="p-small__btn p-show__edit">編集</button>
       </a>
+
   @endif
 　
       <p class="p-show__title">{{ $article->title}}</p>
@@ -39,6 +41,7 @@
   　　 </p>
 
       @if($article->kind === 'single')
+
       <h1 class="p-show__label">金額</h1>
       　 <p class="p-show__contents">{{ $article->hi_price }}円　〜　{{ $article->low_price }}円</h1>
 
@@ -52,15 +55,15 @@
 
         </p>
 
-      <!-- 応募済みかどうかを判別するための変数  -->
+      <!-- 応募済みかどうかを判別するための変数を定義  -->
       <?php $applyed = false ?>
 
-<!-- ログインユーザーが投稿した記事の場合は応募できないようにする -->
+<!-- ログインユーザーが投稿した記事の場合は応募ボタンを非表示 -->
 @if($article->user_id !== Auth::user()->id)
 
-@foreach($boards as $board)
+　@foreach($boards as $board)
 
-    <!-- ボードidに現在ぼログインユーザーidが存在する場合は応募済みのため取引メッセージへのリンクを表示 -->
+    <!-- ボードidに現在のログインユーザーidが存在する場合はすでに応募済みのため取引メッセージへのリンクを表示 -->
     @if($board->user_id === Auth::user()->id )
       <a href="{{ url('show_board',$board->id)}}">
           <button name="button" class="c-btn">取引メッセージへ
@@ -71,11 +74,12 @@
 
     @endif
 
-@endforeach
+　@endforeach
 
-  <!-- 上記if文判定でfalseの場合まだ応募していない為応募フォームを表示 -->
+  <!-- 変数applyがfalseの場合まだ応募していない為応募ボタンを表示 -->
   @if($applyed === false)
 
+  <!-- 応募ボタンを押すとフォームが送信されダイレクトメッセージボードを作成 -->
     <form class="" action="{{ url('/board')}}" method="post">
       @csrf
       <input type="text" name="article_id" value="{{ $article->id}}" style="display:none;">
@@ -106,7 +110,7 @@
 
             </div>
             @endif
-
+            <!-- コメント作成フォーム -->
             <form class="" action="{{ url('comment',$article->id)}}" method="post">
               @csrf
 
@@ -118,6 +122,7 @@
              <input type="text" name="user_name" value="{{Auth::user()->name}}" style="display:none;">
 
                 <input type="text" name="article_id" value="{{$article->id}}" style="display:none;">
+
               <div class="text-right">
                 <button type="submit" name="button" class="p-small__btn btn-primary">投稿</button>
               </div>
@@ -130,20 +135,24 @@
       <div class="p-comment__label">コメント一覧</div>
       <div class="p-comment__container">
 
-
-
           @foreach($comments as $comment)
-        <div class="p-comment__items">
-          <p class="p-comment__name">name:{{ $comment->user_name}}</p>
-          <p class="p-comment__text">{{ $comment->body }}</p>
-          <p class="p-comment__date">{{ date('Y/m/d , H:i',strtotime($comment->created_at))}}</p>
-          @if($comment->user_name === Auth::user()->name)
-          <form class="" action="{{url('comment_delete',$comment->id)}}" method="post">
-            @csrf
-            <button type="submit" class="p-comment__delete btn-primary">削除</button>
-          </form>
-          @endif
-        </div>
+
+            <div class="p-comment__items">
+              <p class="p-comment__name">name:{{ $comment->user_name}}</p>
+              <p class="p-comment__text">{{ $comment->body }}</p>
+              <p class="p-comment__date">{{ date('Y/m/d , H:i',strtotime($comment->created_at))}}</p>
+
+              @if($comment->user_name === Auth::user()->name)
+              <!-- コメント削除フォーム -->
+              <form class="" action="{{url('comment_delete',$comment->id)}}" method="post">
+                @csrf
+                <button type="submit" class="p-comment__delete btn-primary">削除</button>
+              </form>
+
+              @endif
+
+            </div>
+
           @endforeach
 
       </div>

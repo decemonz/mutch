@@ -21,6 +21,7 @@
               <input type="text" class="c-form__control"  name="title" value="{{ old('title')}}" />
             </div>
 
+            <!-- 案件種別によって金額設定項目を切り替え -->
             <div id="js-kind">
 
               <div class="c-form__group">

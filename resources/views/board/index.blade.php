@@ -10,9 +10,7 @@
 
   <div class="c-panel__container">
 
-
       <h1 class="p-show__label pb-3">ダイレクトメッセージ一覧</h1>
-
 
 
 @if( $user->id === Auth::user()->id)
@@ -20,7 +18,6 @@
   <div class="p-show__contents">
 
    <p class="p-show__label">取引中案件</p>
-
 
    @if($client_boards)
 

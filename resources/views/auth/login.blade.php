@@ -3,10 +3,13 @@
 @section('content')
 <div id="form">
   <div class="c-panel__container">
+
         <div class="c-form__head">
           ログイン
         </div>
+
         <div class="panel-body">
+
           @if($errors->any())
           <div class="alert alert-danger">
             @foreach($errors->all() as $message)
@@ -14,6 +17,7 @@
             @endforeach
           </div>
           @endif
+          
           <form class="" action="{{ route('login')}}" method="post">
             @csrf
             <div class="c-form__group">

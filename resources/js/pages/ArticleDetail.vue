@@ -13,7 +13,7 @@
         </a>
 
         <!-- ツイッターシェアリンク -->
-        <a id="tweet" @click="tweet"　class="tweet__btn" target="newwindow" style="color:white;" href="https://twitter.com/intent/tweet?url=https://stark-headland-31167.herokuapp.com/index/articles/"><i class="fab fa-twitter" style="margin-right:3px;"></i>tweet</a>
+        <a id="tweet" @click="tweet"　class="tweet__btn" target="newwindow" style="color:white;" href="https://twitter.com/intent/tweet?url=https://stark-headland-31167.herokuapp.com/articles/"><i class="fab fa-twitter" style="margin-right:3px;"></i>tweet</a>
 
 
 
@@ -120,7 +120,7 @@
         </div>
 
 
-    <div v-if="comments.length > 0" class="p-comment__label">コメント一覧</div>
+    <div v-if="comments.length > 0" @click="comment_index" class="p-comment__label">コメント一覧</div>
 
 
     <div class="p-comment__container">
@@ -201,18 +201,28 @@ export default {
       )
     },
     // コメント投稿
-    commentSubmit:function(){
+    async commentSubmit(){
       var commentFormData ={
-        body:this.commentBody,
-        user_name:this.currentUser.name,
-        article_id:this.article.id,
-        _token:this.csrf,
-      };
-        axios.post(`/comment/${this.article.id}`,commentFormData)
-        .then(
-         this.$router.go({name:'ArticleDetail'})
-        )
+         body:this.commentBody,
+         user_name:this.currentUser.name,
+         article_id:this.article.id,
+         _token:this.csrf,
+       };
+      const response = await axios.post(`/comment/${this.article.id}`,commentFormData)
+      this.fetchArticle()
     },
+    // commentSubmit:function(){
+    //   var commentFormData ={
+    //     body:this.commentBody,
+    //     user_name:this.currentUser.name,
+    //     article_id:this.article.id,
+    //     _token:this.csrf,
+    //   };
+    //     axios.post(`/comment/${this.article.id}`,commentFormData)
+    //     .then(
+    //      this.$router.go({name:'ArticleDetail'})
+    //     )
+    // },
     // コメント削除
     commentDelete:function(){
       var commentId = document.getElementById('comment-id').value;
@@ -236,32 +246,25 @@ export default {
     tweet:function(){
       document.getElementById('tweet').href+=this.article.id+"&text="+this.article.title;
     },
+    // laravelからjsonを受け取り変数に入れる
+    async fetchArticle(){
+      const response = await axios.get(`/ajax/articles/${this.id}`)
+      // 受け取った変数に複数のデータを詰めているためインデックス番号を指定して取得
+        this.article = response.data[0]
+        this.user = response.data[1]
+        this.comments = response.data[2]
+        this.boards = response.data[3]
+        this.currentUser = response.data[4]
+    },
   },
-  // laravelからajaxで受け取ったデータを変数に格納
-   mounted(){
-    var self = this;
-    var url = `/ajax/articles/${this.id}`
-     axios.get(url).then(function(response){
-      self.article = response.data
-    });
-    var url = `/ajax/user/${this.id}`
-    axios.get(url).then(function(response){
-     self.user = response.data
-   });
-   var url = `/ajax/comments/${this.id}`
-    axios.get(url).then(function(response){
-     self.comments = response.data
-   });
-   var url = `/ajax/boards/${this.id}`
-    axios.get(url).then(function(response){
-     self.boards = response.data
-   });
-   var url = `/ajax/currentUser/${this.id}`
-    axios.get(url).then(function(response){
-     self.currentUser = response.data
-   });
+ watch:{
+   $route:{
+     async handler(){
+       await this.fetchArticle()
+     },
+     immediate:true
+   }
  },
-
 }
 </script>
 

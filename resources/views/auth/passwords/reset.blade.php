@@ -6,7 +6,9 @@
         <div class="c-form__head">
           パスワード再発行
         </div>
+
         <div class="panel-body">
+
           @if($errors->any())
           <div class="alert alert-danger">
             @foreach($errors->all() as $message)
@@ -14,6 +16,7 @@
             @endforeach
           </div>
           @endif
+          
           <form class="" action="{{ route('password.update')}}" method="post">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}" />

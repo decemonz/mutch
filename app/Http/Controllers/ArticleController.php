@@ -20,8 +20,8 @@ class ArticleController extends Controller
     public function top(){
       $user = Auth::user();
       $user_id = $user->id;
-      $articles = Auth::user()->articles;
-      $boards = Board::where('client_id',$user_id)->get();
+      $articles = $user->articles;
+      $boards = Board::where('client_id',$user_id)->orderBy('created_at','DESC')->paginate(5);
       return view('pages.top',compact('articles','user','boards'));
     }
 

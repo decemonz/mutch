@@ -7,9 +7,13 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+use Sichikawa\LaravelSendgridDriver\SendGrid;
+
 class BoardMail extends Mailable
 {
     use Queueable, SerializesModels;
+    use SendGrid;
+    
 
     /**
      * Create a new message instance.

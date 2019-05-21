@@ -36,8 +36,10 @@ class CommentController extends Controller
 
 // コメント一覧
     public function index(){
-      $articles = Article::all();
-      $comments = Auth::user()->comment;
+      // ログインユーザーがコメントしている案件記事を取得
+      $articles = Article::whereHas('comments',function($q){
+        $q->where('user_name','=',Auth::user()->name);
+      })->paginate(3);
       return view('comment.index',compact('articles'));
 
     }

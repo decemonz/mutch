@@ -1,3 +1,4 @@
+<!-- パスワード再発行 -->
 @extends('layout')
 
 @section('content')
@@ -6,7 +7,9 @@
         <div class="c-form__head">
           パスワード再発行
         </div>
+
         <div class="panel-body">
+
           @if($errors->any())
           <div class="alert alert-danger">
             @foreach($errors->all() as $message)
@@ -14,6 +17,7 @@
             @endforeach
           </div>
           @endif
+
           <form class="" action="{{ route('password.email')}}" method="post">
             @csrf
             <div class="c-form__group">

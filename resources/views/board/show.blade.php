@@ -6,10 +6,7 @@
 
 @section('content')
 
-
-
 <section class="show">
-
 
 <div class="p-message">
 
@@ -20,16 +17,19 @@
 
       @if($message->user->name == Auth::user()->name)
 
+      <!-- メッセージ表示を記事投稿者、応募者で左右に分ける -->
       <div class="p-message__left">
         <p class="p-message__left-date">{{ date('Y/m/d , H:i',strtotime($message->created_at))}}</p>
         <p class="p-message__left-name">{{ $message->user->name }}</p>
         <img src="https://s3-ap-northeast-1.amazonaws.com/match-test01/{{ $message->user->image }}" alt="image" class="p-message__left-image">
         <p>{{ $message->body }}</p>
         @if($message->user_id === Auth::user()->id)
+
         <form class="" action="{{url('message_delete',$message->id)}}" method="post">
           @csrf
           <button type="submit" class="p-comment__delete btn-primary">削除</button>
         </form>
+
         @endif
       </div>
 
@@ -53,7 +53,7 @@
       @endif
 
       @endforeach
-
+      <!-- ページネーションリンクを作成 -->
         {{ $messages->links()}}
 
   </div>
@@ -65,6 +65,7 @@
                   <p>{{ $message }}</p>
                   @endforeach
                 </div>
+
                 @endif
                 <form class="" action="{{ url('message',$board->id)}}" method="post">
                   @csrf
@@ -82,7 +83,6 @@
                 </form>
 
               </div>
-
 
               <a class="pagi__button" href="{{route('board.index')}}"> &laquo; Back</a>
 

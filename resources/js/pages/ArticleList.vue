@@ -67,26 +67,22 @@ export default {
     sortDefault:function(){
     this.sort = ''
     },
-  },
-  created(){
-      var self = this;
-      var url = `/ajax/articles/?page=${self.page}`
-      axios.get(url).then(function(response){
-        self.articles = response.data.data
-        self.currentPage = response.data.current_page
-        self.lastPage = response.data.last_page
-      });
-  },
-  updated(){
-    var self = this;
-    var url = `/ajax/articles/?page=${self.page}`
-    axios.get(url).then(function(response){
-      self.articles = response.data.data
-      self.currentPage = response.data.current_page
-      self.lastPage = response.data.last_page
-    });
-  },
-}
+    async fetchArticles(){
+      const response = await axios.get(`/ajax/articles/?page=${this.page}`)
+      this.articles = response.data.data
+      this.currentPage = response.data.current_page
+      this.lastPage = response.data.last_page
+    },
+    },
+    watch:{
+      $route:{
+        async handler(){
+          await this.fetchArticles()
+        },
+        immediate:true
+      }
+    }
+  }
 </script>
 
 <style lang="css" scoped>

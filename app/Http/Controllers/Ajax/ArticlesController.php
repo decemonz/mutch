@@ -14,41 +14,28 @@ use Illuminate\Support\Facades\Auth;
 class ArticlesController extends Controller
 {
   public function index(){
-    $articles = Article::paginate(3);
+    $articles = Article::orderBy('created_at','DESC')->paginate(3);
     return $articles;
 
   }
-
+// 記事詳細のvueにデータをjsonで送る
   public function show($id){
-    $article = Article::find($id);
-    return $article;
-  }
-
-  public function user($id){
+    // 配列dataを定義
+    $data = [];
     $article = Article::find($id);
     $user = User::find($article->user_id);
-
-    return $user;
-  }
-
-  public function comments($id){
-    $article = Article::find($id);
     $comments = $article->comments;
-
-    return $comments;
-  }
-
-  public function boards($id){
-
-    // 記事に紐づくボードを取得
     $boards = Board::where('article_id',$id)->get();
-
-    return $boards;
-  }
-
-  public function currentUser($id){
     $currentUser = Auth::user();
-    return $currentUser;
+
+    // 変数dataに詰めて行く
+    array_push($data,$article);
+    array_push($data,$user);
+    array_push($data,$comments);
+    array_push($data,$boards);
+    array_push($data,$currentUser);
+
+    return $data;
   }
 
 }

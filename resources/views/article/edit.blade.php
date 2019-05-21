@@ -24,12 +24,16 @@
             <div id="js-kind">
 
             <div class="c-form__group">
+
               <label for="name">案件種別</label>
+
               <select class="c-form__control" name="kind" value="{{ $article->kind}}" v-model="kind">
                 <option value="single">単発</option>
                 <option value="revenue">レベニューシェア</option>
               </select>
+
             </div>
+
             <div class="c-form__group"  v-if="kind === 'single'" >
               <label for="price">金額</label><br>
               下限:
@@ -49,6 +53,7 @@
           </form>
 
           <div class="text-right" id="js-confirm">
+
             <form class="" action="{{ url('article_delete',$article->id)}}" method="post" onSubmit="return confirm('記事を削除してよろしいですか？')">
               @csrf
                 <button type="submit" name="button" class="c-btn"　>記事削除</button>
@@ -66,5 +71,6 @@
 
 </div>
 @endsection
+
 @section('footer')
 @endsection
