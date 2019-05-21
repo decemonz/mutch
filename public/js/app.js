@@ -2079,14 +2079,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2128,7 +2120,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         user_id: this.currentUser.id,
         _token: this.csrf
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/board', boardFormData).then(this.$router.go("/show_board/".concat(this.article.id)));
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/board', boardFormData).then(this.$router.go({
+        name: 'ArticleDetail'
+      }));
     },
     // コメント投稿
     commentSubmit: function () {
@@ -2147,13 +2141,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _token: this.csrf
                 };
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/comment/".concat(this.article.id), commentFormData);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/comment/".concat(this.article.id), commentFormData).then(this.$router.go({
+                  name: 'ArticleDetail'
+                }));
 
               case 3:
                 response = _context.sent;
-                this.fetchArticle();
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2167,32 +2162,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return commentSubmit;
     }(),
-    // commentSubmit:function(){
-    //   var commentFormData ={
-    //     body:this.commentBody,
-    //     user_name:this.currentUser.name,
-    //     article_id:this.article.id,
-    //     _token:this.csrf,
-    //   };
-    //     axios.post(`/comment/${this.article.id}`,commentFormData)
-    //     .then(
-    //      this.$router.go({name:'ArticleDetail'})
-    //     )
-    // },
-    // コメント削除
-    commentDelete: function commentDelete() {
-      var commentId = document.getElementById('comment-id').value;
-      var commentDeleteData = {
-        _token: this.csrf
-      };
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/comment_delete/".concat(commentId), commentDeleteData).then(this.$router.go({
-        name: 'ArticleDetail'
+    // コメント削除(引数にコメントIDを受け取る)
+    commentDelete: function () {
+      var _commentDelete = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(commentId) {
+        var commentDeleteData, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                commentDeleteData = {
+                  _token: this.csrf
+                };
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/comment_delete/".concat(commentId), commentDeleteData).then(this.$router.go({
+                  name: 'ArticleDetail'
+                }));
+
+              case 3:
+                response = _context2.sent;
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
       }));
-    },
-    // 一覧画面遷移用
-    back: function back() {
-      this.$router.push("/index");
-    },
+
+      function commentDelete(_x) {
+        return _commentDelete.apply(this, arguments);
+      }
+
+      return commentDelete;
+    }(),
     // 編集ページへのリンク
     articleEdit: function articleEdit() {
       this.$router.push("/articleEdit/".concat(this.article.id));
@@ -2205,17 +2209,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     fetchArticle: function () {
       var _fetchArticle = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
+                _context3.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/ajax/articles/".concat(this.id));
 
               case 2:
-                response = _context2.sent;
+                response = _context3.sent;
                 // 受け取った変数に複数のデータを詰めているためインデックス番号を指定して取得
                 this.article = response.data[0];
                 this.user = response.data[1];
@@ -2225,10 +2229,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 8:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function fetchArticle() {
@@ -2243,20 +2247,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       handler: function () {
         var _handler = _asyncToGenerator(
         /*#__PURE__*/
-        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context4.prev = _context4.next) {
                 case 0:
-                  _context3.next = 2;
+                  _context4.next = 2;
                   return this.fetchArticle();
 
                 case 2:
                 case "end":
-                  return _context3.stop();
+                  return _context4.stop();
               }
             }
-          }, _callee3, this);
+          }, _callee4, this);
         }));
 
         function handler() {
@@ -2293,6 +2297,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -21709,17 +21714,16 @@ var render = function() {
                       domProps: { value: _vm.csrf }
                     }),
                     _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", id: "comment-id" },
-                      domProps: { value: comment.id }
-                    }),
-                    _vm._v(" "),
                     _c(
                       "button",
                       {
                         staticClass: "p-comment__delete btn-primary",
                         attrs: { type: "submit", name: "button" },
-                        on: { click: _vm.commentDelete }
+                        on: {
+                          click: function($event) {
+                            return _vm.commentDelete(comment.id)
+                          }
+                        }
                       },
                       [_vm._v("削除")]
                     )
@@ -21732,11 +21736,18 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "back__btn" }, [
-      _c("a", { staticClass: "pagi__button", on: { click: _vm.back } }, [
-        _vm._v(" « Back")
-      ])
-    ])
+    _c(
+      "div",
+      { staticClass: "back__btn" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "pagi__button", attrs: { to: "/index" } },
+          [_vm._v(" « Back")]
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

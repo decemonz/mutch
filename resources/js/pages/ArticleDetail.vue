@@ -90,15 +90,7 @@
 
         <div class="panel-body">
 
-          <!-- @if($errors->any())
-          <div class="alert alert-danger">
 
-            @foreach($errors->all() as $message)
-             <p>{{ $message }}</p>
-            @endforeach
-
-          </div>
-          @endif -->
 
         <form class="" action="" method="post"  @submit.prevent="submit">
 
@@ -112,7 +104,7 @@
             <input type="text" name="user_name" :value="user.name" style="display:none;">
 
             <input type="text" name="article_id" :value="article.id" style="display:none;">
-            <div class="text-right">
+            <div class="text-right" >
               <button type="submit" name="button" class="p-small__btn btn-primary" @click="commentSubmit">投稿</button>
             </div>
 
@@ -135,8 +127,8 @@
         <!-- ログインユーザーが作成したコメントの場合のみ削除ボタンを表示 -->
         <form class="" v-if="comment.user_name === currentUser.name" action="" method="post"  @submit.prevent="submit">
            <input type="hidden" name="_token" :value="csrf">
-           <input type="hidden" id="comment-id" :value="comment.id" />
-          <button type="submit" @click="commentDelete" name="button" class="p-comment__delete btn-primary">削除</button>
+                                <!-- クリックイベントに引数でコメントIDを渡す -->
+          <button type="submit" @click="commentDelete(comment.id)" name="button" class="p-comment__delete btn-primary">削除</button>
         </form>
 
       </div>
@@ -146,7 +138,7 @@
   </div>
 
   <div class="back__btn">
-      <a class="pagi__button" @click="back"> &laquo; Back</a>
+      <router-link to="/index" class="pagi__button" > &laquo; Back</router-link>
   </div>
 
 </div>
@@ -197,7 +189,7 @@ export default {
       };
       axios.post('/board',boardFormData)
       .then(
-       this.$router.go(`/show_board/${this.article.id}`)
+     this.$router.go({name:'ArticleDetail'})
       )
     },
     // コメント投稿
@@ -209,34 +201,20 @@ export default {
          _token:this.csrf,
        };
       const response = await axios.post(`/comment/${this.article.id}`,commentFormData)
-      this.fetchArticle()
+      .then(
+       this.$router.go({name:'ArticleDetail'})
+      )
+
     },
-    // commentSubmit:function(){
-    //   var commentFormData ={
-    //     body:this.commentBody,
-    //     user_name:this.currentUser.name,
-    //     article_id:this.article.id,
-    //     _token:this.csrf,
-    //   };
-    //     axios.post(`/comment/${this.article.id}`,commentFormData)
-    //     .then(
-    //      this.$router.go({name:'ArticleDetail'})
-    //     )
-    // },
-    // コメント削除
-    commentDelete:function(){
-      var commentId = document.getElementById('comment-id').value;
+    // コメント削除(引数にコメントIDを受け取る)
+    async commentDelete(commentId){
       var commentDeleteData ={
         _token:this.csrf,
       };
-        axios.post(`/comment_delete/${commentId}`,commentDeleteData)
+      const response = await axios.post(`/comment_delete/${commentId}`,commentDeleteData)
         .then(
          this.$router.go({name:'ArticleDetail'})
         )
-    },
-    // 一覧画面遷移用
-    back:function(){
-       this.$router.push(`/index`)
     },
     // 編集ページへのリンク
     articleEdit:function(){

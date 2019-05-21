@@ -37,10 +37,6 @@ Route::post('/article_delete/{id}','ArticleController@destroy')->name('article.d
 // ajax(vueへデータを送る用)
 Route::get('/ajax/articles','Ajax\ArticlesController@index');
 Route::get('/ajax/articles/{id}','Ajax\ArticlesController@show');
-Route::get('/ajax/user/{id}','Ajax\ArticlesController@user');
-Route::get('/ajax/comments/{id}','Ajax\ArticlesController@comments');
-Route::get('/ajax/boards/{id}','Ajax\ArticlesController@boards');
-Route::get('/ajax/currentUser/{id}','Ajax\ArticlesController@currentUser');
 
 
 // comment

@@ -21,7 +21,7 @@ class BoardMail extends Mailable
      * @return void
      */
 
-     public $board;
+     private $board;
 
     public function __construct($board)
     {
@@ -39,8 +39,8 @@ class BoardMail extends Mailable
         return $this
         ->from('gg@gmail.com')
         ->subject('応募がありました')
-        ->view('mail.board')
-        ->with(['board' => $this->board]);
+        ->view('mail.board');
+        // ->with(['board' => $this->board]);
 
     }
 }
