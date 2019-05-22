@@ -12,14 +12,15 @@ class BoardMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+       public $board;
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $board
      */
 
-     private $board;
+
 
     public function __construct($board)
     {

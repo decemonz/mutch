@@ -67,7 +67,7 @@ class BoardsController extends Controller
 
       $messages = Message::where('board_id',$board->id)->simplePaginate(10);
 
-        Mail::to($user)->send(new BoardMail($board));
+      Mail::to($user)->send(new BoardMail($board));
 
       return view('board.show',compact('board','user','client','article','messages'));
 
