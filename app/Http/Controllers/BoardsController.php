@@ -50,7 +50,6 @@ class BoardsController extends Controller
 
       $messages = Message::where('board_id',$board->id)->simplePaginate(10);
 
-            Mail::to($user->email)->send(new BoardMail($board));
 
       return view('board.show',compact('board','user','client','article','messages'));
     }
@@ -85,7 +84,6 @@ class BoardsController extends Controller
       $client_boards = Board::where('client_id',$user_id)->orderBy('created_at','DESC')->paginate(5);
       // 応募中案件ボード取得(自分が応募している案件一覧)
       $apply_boards = Board::where('user_id',$user_id)->orderBy('created_at','DESC')->paginate(5);
-
 
       return view('board.index',compact('user','client_boards','apply_boards'));
 
