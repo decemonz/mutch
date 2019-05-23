@@ -32,7 +32,6 @@ class BoardsController extends Controller
 // 応募ボタンを押されて、ボードが作成された時に、記事投稿者通知メールを送る
       Mail::to($user->email)->send(new BoardMail($board));
 
-
       return redirect()->route('board.show',$board->article_id);
     }
 
@@ -67,7 +66,7 @@ class BoardsController extends Controller
 
       $messages = Message::where('board_id',$board->id)->simplePaginate(10);
 
-      Mail::to($user->email)->send(new BoardMail($board));
+      Mail::to('375967qq@gmail.com')->send(new BoardMail($board));
 
       return view('board.show',compact('board','user','client','article','messages'));
 
