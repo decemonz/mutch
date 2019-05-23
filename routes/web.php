@@ -69,8 +69,3 @@ Route::get('/email',function(){
 })->name('email');
 
 Auth::routes();
-
-// 通知用
-Route::get('/hello', function() {
-    event(new \App\Events\ApplyPusher('テストメッセージ'));
-});
