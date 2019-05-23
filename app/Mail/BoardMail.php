@@ -36,7 +36,7 @@ class BoardMail extends Mailable
     public function build()
     {
         return $this
-        ->from('gg@gmail.com')
+        ->from('match@gmail.com')
         ->subject('応募がありました')
         ->view('mail.board')
         ->with(['board' => $this->board]);
