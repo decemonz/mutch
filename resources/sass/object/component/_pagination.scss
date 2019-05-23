@@ -1,0 +1,60 @@
+.pagination{
+  margin: 40px 0;
+  width: auto;
+  height: 20px;
+  display: block;
+}
+.page{
+
+  &-link{
+  display: inline-block;
+  padding: 8px 15px;
+  }
+
+  &-item{
+    float: left;
+    font-size: 15px;
+    background-color: white;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    border-right: 1px solid silver;
+
+    cursor: pointer;
+    display: block;
+    &:hover{
+      background-color: #DCDCDC;
+    }
+
+
+    @include mq(md){
+      font-size: 12px;
+    }
+
+    &:first-child{
+      border-left: 1px solid silver;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+
+    }
+    &:last-child{
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    &.active{
+      background-color:#708090;
+      transition: 0s;
+    &:hover{
+      color: white;
+
+    }
+
+    }
+
+    &.disabled{
+     opacity: 0.4;
+     cursor: inherit;
+     background-color: inherit;
+    }
+  }
+}
