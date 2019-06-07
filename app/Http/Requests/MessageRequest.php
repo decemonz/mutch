@@ -24,7 +24,7 @@ class MessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|max:191',
+            'body' => 'required|max:252',
             'user_id' => 'required',
             'board_id' => 'required'
         ];

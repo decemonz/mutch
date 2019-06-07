@@ -134,7 +134,7 @@
 
   <div class="p-show__contents">
 
-      <a href="{{ url('comment',$comment_article->id)}}" class="p-show__contents">
+      <a href="{{ url('articles',$comment_article->id)}}" class="p-show__contents">
 
       <div class="p-show__newlabel">
             {{ $comment_article->title }}
