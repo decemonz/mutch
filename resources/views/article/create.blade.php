@@ -35,9 +35,9 @@
               <div class="c-form__group" v-if="kind === 'single'">
                 <label for="price">金額</label><br>
                 下限:
-                <input type="number" class="c-form__control-price" value="{{ old('hi_price')}}" placeholder="1000円~" id="hi_price" name="hi_price" > (円)　　<br>
+                <input type="number" class="c-form__control-price" value="{{ old('low_price')}}" placeholder="1000円~" id="low_price" name="low_price" > (円)　　<br>
                 上限:
-                <input type="number" class="c-form__control-price"  value="{{ old('low_price')}}" id="low_price" name="low_price" > (円)
+                <input type="number" class="c-form__control-price"  value="{{ old('hi_price')}}" id="hi_price" name="hi_price" > (円)
               </div>
 
             </div>

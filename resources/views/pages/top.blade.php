@@ -6,6 +6,8 @@
 
 @section('content')
 
+
+
 <!-- 投稿した案件に応募があればその記事を表示 -->
 @if( count($boards) > 0 )
 

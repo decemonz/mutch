@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
   <head>
-    <meta charset="utf8mb4_unicode_ci">
+    <meta charset="utf8_general_ci">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title></title>

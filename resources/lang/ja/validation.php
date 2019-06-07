@@ -41,7 +41,7 @@ return [
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => ':attribute　形式で入力してください',
     'exists' => 'The selected :attribute is invalid.',
-    'file' => 'The :attribute must be a file.',
+    'file' => ':attribute 形式も物をアップロードしてください',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
         'numeric' => 'The :attribute must be greater than :value.',
@@ -55,7 +55,7 @@ return [
         'string' => 'The :attribute must be greater than or equal :value characters.',
         'array' => 'The :attribute must have :value items or more.',
     ],
-    'image' => 'The :attribute must be an image.',
+    'image' => ':attribute はイメージファイル形式の物をアップロードしてください。',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => ':attribute は数値で入力してください',
@@ -76,7 +76,7 @@ return [
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'The :attribute may not be greater than :max.',
+        'numeric' => ':attribute は:max円以下で入力してください.',
         'file' => ':attribute は :max キロバイト以下の画像を選択してください',
         'string' => ':attributeは:max文字以下で入力してください',
         'array' => 'The :attribute may not have more than :max items.',
@@ -154,6 +154,7 @@ return [
       'hi_price' => '上限',
       'low_price' => '下限',
       'name' => '名前',
+      'image' => '画像'
 
         ],
 

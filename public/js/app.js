@@ -21332,9 +21332,9 @@ var render = function() {
           ? _c("p", { staticClass: "c-article__price" }, [
               _vm._v(
                 "\n      金額　: " +
-                  _vm._s(_vm.article.low_price) +
-                  "　円　~ " +
                   _vm._s(_vm.article.hi_price) +
+                  "　円　~ " +
+                  _vm._s(_vm.article.low_price) +
                   "　円\n    "
               )
             ])

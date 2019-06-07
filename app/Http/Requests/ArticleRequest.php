@@ -24,10 +24,10 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'required|min:3',
-          'body' => 'required|max:500',
-          'hi_price' => 'integer',
-          'low_price' => 'integer|min:1000',
+          'title' => 'required|min:3|max:191',
+          'body' => 'required|max:191',
+          'hi_price' => 'integer|max:9000000',
+          'low_price' => 'integer|min:1000|max:9000000',
           'kind' => 'required',
 
             //

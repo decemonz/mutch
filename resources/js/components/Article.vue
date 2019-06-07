@@ -12,7 +12,7 @@
         {{ article.title}}
       </div>
       <p class="c-article__price" v-if="article.kind === 'single'">
-        金額　: {{ article.low_price}}　円　~ {{ article.hi_price}}　円
+        金額　: {{ article.hi_price}}　円　~ {{ article.low_price}}　円
       </p>
       <p class="c-article__kind" v-if="article.kind === 'single'">
         単発案件

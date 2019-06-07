@@ -26,11 +26,15 @@ class UserController extends Controller
       // ユーザー投稿案件取得
       $articles = Article::where('user_id',$user_id)->paginate(2);
       // 取引中案件ボード取得(自分が募集をかけている案件一覧)
-      $client_boards = Board::where('client_id',$user_id)->get();
+      $client_boards = Board::where('client_id',$user_id)->paginate(2);
       // 応募中案件ボード取得(自分が応募している案件一覧)
-      $apply_boards = Board::where('user_id',$user_id)->get();
+      $apply_boards = Board::where('user_id',$user_id)->paginate(2);
 
-      return view('prof.show',compact('user','articles','client_boards','apply_boards'));
+      $comment_articles = Article::whereHas('comments',function($q){
+        $q->where('user_name','=',Auth::user()->name);
+      })->paginate(2);
+
+      return view('prof.show',compact('user','articles','client_boards','apply_boards','comment_articles'));
     }
 
 // プロフィール編集

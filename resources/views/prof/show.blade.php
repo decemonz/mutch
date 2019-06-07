@@ -10,7 +10,7 @@
 
   <div class="c-panel__container">
 
-      <p class="p-show__contents">No.{{ $user->id }}</p>
+      <p class="p-show__label">No.{{ $user->id }}</p>
 
       <h1 class="p-show__label">ユーザー名</h1>
     　 <p class="p-show__contents">{{ $user->name }}</p>
@@ -54,11 +54,11 @@
 
   </div>
 
-<!-- @if( $user->id === Auth::user()->id)
+ @if( $user->id === Auth::user()->id)
 
   <div class="p-show__contents">
 
-   <p class="p-show__label">取引中案件一覧</p>
+   <p class="p-show__label">最新取引中案件一覧</p>
 
 
    @if($client_boards)
@@ -67,32 +67,48 @@
 
    <div class="p-show__contents">
 
-    No.{{ $client_board->id}}
+    <a href="{{ url('show_board',$client_board->id)}}">
 
-     <a href="{{ url('show_board',$client_board->id)}}">
-       {{ $client_board->article_title}}
-     </a>
+      <p class="p-show__newlabel">
+        {{ $client_board->article_title}}
+      </p>
+      <span class="p-show__contents">応募者 :<p style="display:none;">{{$id = $client_board->user_id}}</p>
+      {{ App\User::find($id)->name}}様</span>
+
+    </a>
      </br>
 
    </div>
 
     @endforeach
 
+
+  @else
+  <p class="p-show__newlabel">
+ 取引中案件はまだありません。
+  </p>
+
   @endif
 
   </div>
 
    <div class="p-show__contents">
-    <p class="p-show__label">応募中案件一覧</p>
+    <p class="p-show__label">最新応募中案件一覧</p>
 
       @if($apply_boards)
 
       @foreach($apply_boards as $apply_board)
 
       <div class="p-show__contents">
-      No.{{ $apply_board->id}}   <a href="{{ url('show_board',$apply_board->id)}}">
+    <a href="{{ url('show_board',$apply_board->id)}}">
 
-    　　　{{ $apply_board->article_title }}
+          <div class="p-show__newlabel">
+            {{ $apply_board->article_title}}
+          </div>
+
+         <span class="p-show__contents">  投稿者 :<p style="display:none;">{{$id = $apply_board->client_id}}</p>
+          {{ App\User::find($id)->name}}様</span>
+
         </a>
       </div>
 
@@ -102,7 +118,57 @@
 
    </div>
 
-@endif -->
+@endif
+
+<div class="p-show__contents">
+
+<p class="p-show__label">最新コメント一覧</p>
+
+  @foreach($comment_articles as $comment_article)
+
+  <div class="" style="display:none;">
+    <!-- 案件記事に紐付いたコメント取得 -->
+    {{ $article_comments = $comment_article->comments }}
+  </div>
+
+
+  <div class="p-show__contents">
+
+      <a href="{{ url('comment',$comment_article->id)}}" class="p-show__contents">
+
+      <div class="p-show__newlabel">
+            {{ $comment_article->title }}
+      </div>
+
+      @foreach($article_comments as $article_comment)
+
+      <!-- 自分の投稿したコメントかどうかを判定 -->
+        @if($article_comment->user_name === Auth::user()->name)
+
+      <div  class="p-comment__items-index">
+
+        <p class="p-comment__name">name:{{ $article_comment->user_name}}</p>
+        <p class="p-comment__text">{{ $article_comment->body }}</p>
+        <p class="p-comment__date">{{ date('Y/m/d , H:i',strtotime($article_comment->created_at))}}</p>
+
+      </div>
+
+      <!-- コメント最新一件取得のため一件表示後break -->
+          @break
+
+        @endif
+
+      @endforeach
+
+      </a>
+
+  </div>
+
+
+  @endforeach
+
+</div>
+
 
 
 <a class="p-show__label" href="{{ route('comment.index')}}"> コメント一覧</a>

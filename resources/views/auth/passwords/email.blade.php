@@ -10,6 +10,12 @@
 
         <div class="panel-body">
 
+          @if(session('status'))
+           <div class="flash">
+             メールを送信しました。
+           </div>
+          @endif
+
           @if($errors->any())
           <div class="alert alert-danger">
             @foreach($errors->all() as $message)

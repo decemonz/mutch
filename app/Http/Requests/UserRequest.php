@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'email' => 'required|email',
             'image' => 'required|image|max:10240',
-            'body' => 'required',
+            'body' => 'max:191',
         ];
     }
 }

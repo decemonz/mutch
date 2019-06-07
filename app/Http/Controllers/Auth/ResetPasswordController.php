@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuinate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -36,5 +37,9 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    // protected function sendResetResponse(Request $request,$response){
+    //   return redirect()->url('/email')->with('my_status',__('メールを送信しました。');)
+    // }
 
 }
