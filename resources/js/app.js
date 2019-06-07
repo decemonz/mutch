@@ -18,14 +18,6 @@ new Vue({
 })
 
 
-// 案件種別選択用
-new Vue({
-  el:'#js-kind',
-  data:{
-    kind:'single'
-  },
-})
-
 // ハンバーガーメニュー切り替え,ログアウト用
 new Vue({
   el:'#js-logout',
@@ -49,6 +41,17 @@ new Vue({
       event.preventDefault();
       document.getElementById('logout-form-footer').submit();
     },
+  },
+})
+
+// フォーム入力バリデーション用
+new Vue({
+  el:'#form',
+  data:{
+    kind:'single',
+    hi_price:'',
+    low_price:'',
+    validate:false,
   },
 })
 

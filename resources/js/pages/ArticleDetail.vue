@@ -38,7 +38,7 @@
     　　
         <h1 class="p-show__label" v-if="article.kind === 'single' ">金額</h1>
 
-        　 <p class="p-show__contents" v-if="article.kind === 'single' ">{{ article.hi_price }}円　〜　{{ article.low_price }}円</h1>
+        　 <p class="p-show__contents" v-if="article.kind === 'single' ">{{ article.low_price }}円　〜　{{ article.hi_price }}円</h1>
 
       　<h1 class="p-show__label">内容</h1>
 

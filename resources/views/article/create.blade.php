@@ -22,7 +22,7 @@
             </div>
 
             <!-- 案件種別によって金額設定項目を切り替え -->
-            <div id="js-kind">
+            <div>
 
               <div class="c-form__group">
                 <label for="name">案件種別</label>
@@ -32,12 +32,13 @@
                 </select>
               </div>
 
-              <div class="c-form__group" v-if="kind === 'single'">
+              <div  class="c-form__group" v-if="kind === 'single'">
+                <p v-if="hi_price < low_price" class="alert">下限が上限を超えています。</p>
                 <label for="price">金額</label><br>
                 下限:
-                <input type="number" class="c-form__control-price" value="{{ old('low_price')}}" placeholder="1000円~" id="low_price" name="low_price" > (円)　　<br>
+                <input type="number" class="c-form__control-price" value="{{ old('low_price')}}" placeholder="1000円~" v-model.number="low_price" name="low_price" > (円)　　<br>
                 上限:
-                <input type="number" class="c-form__control-price"  value="{{ old('hi_price')}}" id="hi_price" name="hi_price" > (円)
+                <input type="number" class="c-form__control-price"  value="{{ old('hi_price')}}" v-model.number="hi_price" name="hi_price" > (円)
               </div>
 
             </div>
@@ -47,7 +48,8 @@
               <textarea name="body" rows="8" cols="80" class="c-form__area">{{ old('body')}}</textarea>
             </div>
             <div class="text-right">
-              <button type="submit" name="button" class="c-btn btn-primary">送信</button>
+              <button v-if="low_price <= hi_price" type="submit" name="button" class="c-btn btn-primary">送信</button>
+              <button v-if="low_price > hi_price"　type="" class="c-btn btn-primary"　disabled>エラーがあります</button>
             </div>
           </form>
         </div>

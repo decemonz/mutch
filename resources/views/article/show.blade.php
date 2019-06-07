@@ -43,7 +43,7 @@
       @if($article->kind === 'single')
 
       <h1 class="p-show__label">金額</h1>
-      　 <p class="p-show__contents">{{ $article->hi_price }}円　〜　{{ $article->low_price }}円</h1>
+      　 <p class="p-show__contents">{{ $article->low_price }}円　〜　{{ $article->hi_price }}円</h1>
 
       @endif
 

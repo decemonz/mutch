@@ -21332,9 +21332,9 @@ var render = function() {
           ? _c("p", { staticClass: "c-article__price" }, [
               _vm._v(
                 "\n      金額　: " +
-                  _vm._s(_vm.article.hi_price) +
-                  "　円　~ " +
                   _vm._s(_vm.article.low_price) +
+                  "　円　~ " +
+                  _vm._s(_vm.article.hi_price) +
                   "　円\n    "
               )
             ])
@@ -21498,9 +21498,9 @@ var render = function() {
       _vm.article.kind === "single"
         ? _c("p", { staticClass: "p-show__contents" }, [
             _vm._v(
-              _vm._s(_vm.article.hi_price) +
+              _vm._s(_vm.article.low_price) +
                 "円　〜　" +
-                _vm._s(_vm.article.low_price) +
+                _vm._s(_vm.article.hi_price) +
                 "円"
             )
           ])
@@ -36710,13 +36710,6 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   data: {
     articles: {}
   }
-}); // 案件種別選択用
-
-new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#js-kind',
-  data: {
-    kind: 'single'
-  }
 }); // ハンバーガーメニュー切り替え,ログアウト用
 
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -36741,6 +36734,16 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       event.preventDefault();
       document.getElementById('logout-form-footer').submit();
     }
+  }
+}); // フォーム入力バリデーション用
+
+new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+  el: '#form',
+  data: {
+    kind: 'single',
+    hi_price: '',
+    low_price: '',
+    validate: false
   }
 });
 
